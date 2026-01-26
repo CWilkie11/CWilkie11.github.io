@@ -32,7 +32,7 @@ const stadiumImages = [
     { url: "https://images.unsplash.com/photo-1504450758481-7338eba7524a?auto=format&fit=crop&w=800&q=80", label: "Football" },
     { url: "https://images.unsplash.com/photo-1505666287802-931dc8394b5f?auto=format&fit=crop&w=800&q=80", label: "Basketball" },
     { url: "https://images.unsplash.com/photo-1517177646040-c89d747ca9a3?auto=format&fit=crop&w=800&q=80", label: "Hockey" },
-    { url: "https://images.unsplash.com/photo-1508344928928-7165b67de128?auto=format&fit=crop&w=800&q=80", label: "Baseball" },
+    { url: "https://images.unsplash.com/photo-1469122312224-c5846569efe1?auto=format&fit=crop&w=800&q=80", label: "Baseball" },
     { url: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=800&q=80", label: "Soccer" }
 ];
 
@@ -43,23 +43,23 @@ const sportLabel = document.getElementById('sport-label');
 function rotateStadiums() {
     if (!carouselImg || !sportLabel) return;
     
-    // Increment the index
+    // Increment the index first so the first swap is to Basketball
     stadiumIndex = (stadiumIndex + 1) % stadiumImages.length;
     
-    // 1. Fade out
+    // 1. Start Fade out
     carouselImg.style.opacity = "0"; 
     
     setTimeout(() => {
-        // 2. Change Source and Label while invisible
+        // 2. Change Source and Label while image is invisible
         carouselImg.src = stadiumImages[stadiumIndex].url;
         sportLabel.innerText = stadiumImages[stadiumIndex].label;
         
-        // 3. Fade back in
+        // 3. Fade back in with the new image and text
         carouselImg.style.opacity = "1";
-    }, 500); // This matches the 0.5s CSS transition
+    }, 500); 
 }
 
-// Start the timer only if the carousel exists (Home Page)
+// Start the timer
 if (carouselImg) {
     setInterval(rotateStadiums, 4000);
 }
