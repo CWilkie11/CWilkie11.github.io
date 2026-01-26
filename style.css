@@ -15,7 +15,7 @@ body {
 
 /* 2. Hero Header */
 header {
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); /* Deep Dark Blue */
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); 
     color: white;
     padding: 80px 20px;
     text-align: center;
@@ -71,7 +71,7 @@ main {
     top: 0;
     height: 100%;
     width: 6px;
-    background: #3b82f6; /* Electric Blue */
+    background: #3b82f6; 
 }
 
 .post-list li:hover {
@@ -89,4 +89,81 @@ main {
 
 .post-date {
     display: block;
-    color: #3
+    color: #3b82f6;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.post-list a {
+    display: inline-block;
+    margin-top: 15px;
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 700;
+    background: #eff6ff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.post-list a:hover {
+    background: #3b82f6;
+    color: white;
+}
+
+/* 6. Footer */
+footer {
+    margin-top: 80px;
+    padding: 40px 20px;
+    text-align: center;
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+/* --- DARK MODE OVERRIDES (ADD THESE) --- */
+
+body.dark-mode {
+    background-color: #0f172a; /* Dark navy */
+    color: #f8fafc;            /* White text */
+}
+
+body.dark-mode .post-list li, 
+body.dark-mode .about-card {
+    background-color: #1e293b; /* Darker slate cards */
+    border-color: #334155;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .post-list h3 {
+    color: #f8fafc;
+}
+
+body.dark-mode .post-list a {
+    background: #334155;
+    color: #3b82f6;
+}
+
+body.dark-mode footer {
+    color: #94a3b8;
+}
+
+/* --- THEME TOGGLE BUTTON STYLING (ADD THIS) --- */
+#theme-toggle {
+    background: #334155;
+    color: white;
+    border: 1px solid #475569;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+body.dark-mode #theme-toggle {
+    background: #f8fafc;
+    color: #0f172a;
+}
