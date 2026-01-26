@@ -123,34 +123,7 @@ footer {
     font-size: 0.95rem;
 }
 
-/* --- DARK MODE OVERRIDES (ADD THESE) --- */
-
-body.dark-mode {
-    background-color: #0f172a; /* Dark navy */
-    color: #f8fafc;            /* White text */
-}
-
-body.dark-mode .post-list li, 
-body.dark-mode .about-card {
-    background-color: #1e293b; /* Darker slate cards */
-    border-color: #334155;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
-}
-
-body.dark-mode .post-list h3 {
-    color: #f8fafc;
-}
-
-body.dark-mode .post-list a {
-    background: #334155;
-    color: #3b82f6;
-}
-
-body.dark-mode footer {
-    color: #94a3b8;
-}
-
-/* --- THEME TOGGLE BUTTON STYLING (ADD THIS) --- */
+/* 7. Theme Toggle Button Styling */
 #theme-toggle {
     background: #334155;
     color: white;
@@ -163,12 +136,7 @@ body.dark-mode footer {
     transition: all 0.2s ease;
 }
 
-body.dark-mode #theme-toggle {
-    background: #f8fafc;
-    color: #0f172a;
-}
-/* --- 7. Interactive References Button --- */
-
+/* 8. References Button */
 .ref-button {
     margin-top: 30px;
     border: 1px solid #e2e8f0;
@@ -199,10 +167,6 @@ body.dark-mode #theme-toggle {
 
 .ref-button[open] summary::before {
     transform: rotate(90deg);
-}
-
-.ref-button summary:hover {
-    background-color: #f1f5f9;
 }
 
 .ref-button[open] {
@@ -238,70 +202,60 @@ body.dark-mode #theme-toggle {
     font-weight: 600;
 }
 
-.ref-content a:hover {
-    text-decoration: underline;
+/* --- 9. DARK MODE LOGIC (The "Smart" Version) --- */
+
+/* Manual Toggle and Automatic System Preference */
+@media (prefers-color-scheme: dark) {
+    body:not(.light-mode) {
+        background-color: #0f172a;
+        color: #f8fafc;
+    }
+    body:not(.light-mode) .post-list li, 
+    body:not(.light-mode) .about-card,
+    body:not(.light-mode) .ref-button {
+        background-color: #1e293b;
+        border-color: #334155;
+    }
+    body:not(.light-mode) h1, 
+    body:not(.light-mode) h2, 
+    body:not(.light-mode) h3,
+    body:not(.light-mode) .post-list h3,
+    body:not(.light-mode) .ref-button summary {
+        color: #f8fafc;
+    }
+    body:not(.light-mode) .ref-content,
+    body:not(.light-mode) footer {
+        color: #94a3b8;
+    }
+    body:not(.light-mode) .post-list a {
+        background: #334155;
+        color: #3b82f6;
+    }
+    body:not(.light-mode) #theme-toggle {
+        background: #f8fafc;
+        color: #0f172a;
+    }
 }
 
-/* --- Dark Mode Support for References --- */
-
+/* Specific class for when the button is clicked */
+body.dark-mode {
+    background-color: #0f172a;
+    color: #f8fafc;
+}
+body.dark-mode .post-list li, 
+body.dark-mode .about-card,
 body.dark-mode .ref-button {
     background-color: #1e293b;
     border-color: #334155;
 }
-
-body.dark-mode .ref-button summary {
+body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode .post-list h3 {
     color: #f8fafc;
 }
-
-body.dark-mode .ref-button summary:hover {
-    background-color: #334155;
-}
-
-body.dark-mode .ref-button[open] summary {
-    background-color: #0f172a;
-    border-bottom-color: #334155;
+body.dark-mode .post-list a {
+    background: #334155;
     color: #3b82f6;
 }
-
-body.dark-mode .ref-content {
-    color: #94a3b8;
-}
-
-body.dark-mode .ref-content a {
-    color: #60a5fa; 
-}
-/* --- 8. System-Level Dark Mode (Auto-Fix for all pages) --- */
-
-@media (prefers-color-scheme: dark) {
-    /* This makes the page dark if the device is set to dark mode */
-    body {
-        background-color: #0f172a;
-        color: #f8fafc;
-    }
-
-    .post-list li, 
-    .about-card,
-    .ref-button {
-        background-color: #1e293b;
-        border-color: #334155;
-    }
-
-    h1, h2, h3,
-    .post-list h3,
-    .ref-button summary {
-        color: #f8fafc;
-    }
-
-    .ref-content {
-        color: #94a3b8;
-    }
-
-    footer {
-        color: #94a3b8;
-    }
-    
-    .post-list a {
-        background: #334155;
-        color: #3b82f6;
-    }
+body.dark-mode #theme-toggle {
+    background: #f8fafc;
+    color: #0f172a;
 }
