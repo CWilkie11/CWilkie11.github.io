@@ -9,7 +9,7 @@ body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     line-height: 1.6;
     color: #334155;
-    background-color: #f1f5f9; /* Soft grey-blue background */
+    background-color: #f1f5f9;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -17,14 +17,14 @@ body {
 header {
     background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); 
     color: white;
-    padding: 80px 20px;
+    padding: 60px 20px;
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
-    font-size: 3rem;
+    font-size: 2.8rem;
     margin-bottom: 10px;
     letter-spacing: -1px;
     color: #f8fafc;
@@ -32,38 +32,94 @@ header h1 {
 
 header p {
     color: #94a3b8;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     max-width: 600px;
     margin: 0 auto;
 }
 
-/* 3. Main Content Container */
+/* 3. BENTO GRID HERO SECTION */
+.bento-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Main feature is twice as wide */
+    grid-template-rows: 200px 200px;
+    gap: 15px;
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    padding: 0 20px;
+}
+
+.bento-item {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #1e293b;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.bento-item:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 15px 30px rgba(59, 130, 246, 0.2);
+}
+
+.large-feature {
+    grid-row: span 2; /* Spans both rows on the left */
+}
+
+.bento-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.9);
+    transition: filter 0.3s ease;
+}
+
+.bento-item:hover img {
+    filter: brightness(1.1);
+}
+
+.bento-tag {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(4px);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* 4. Main Content & Post Cards */
 main {
     max-width: 800px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* 4. The Post List (Cards) */
 .post-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 25px;
 }
 
-.post-list li, .about-card {
+.post-list li {
     background: #ffffff;
     border-radius: 16px; 
-    padding: 35px;
+    padding: 30px;
     border: 1px solid #e2e8f0;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
 }
 
-/* Color accent bar on the left */
 .post-list li::before {
     content: "";
     position: absolute;
@@ -75,199 +131,12 @@ main {
 }
 
 .post-list li:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    transform: translateX(5px);
     border-color: #3b82f6;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
-/* 5. Typography and Links */
+/* 5. Typography */
 .post-list h3 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     color: #0f172a;
-    margin-bottom: 10px;
-}
-
-.post-date {
-    display: block;
-    color: #3b82f6;
-    font-weight: 700;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    margin-bottom: 15px;
-    letter-spacing: 1px;
-}
-
-.post-list a {
-    display: inline-block;
-    margin-top: 15px;
-    color: #3b82f6;
-    text-decoration: none;
-    font-weight: 700;
-    background: #eff6ff;
-    padding: 8px 16px;
-    border-radius: 8px;
-    transition: background 0.2s;
-}
-
-.post-list a:hover {
-    background: #3b82f6;
-    color: white;
-}
-
-/* 6. Footer */
-footer {
-    margin-top: 80px;
-    padding: 40px 20px;
-    text-align: center;
-    color: #64748b;
-    font-size: 0.95rem;
-}
-
-/* 7. Theme Toggle Button Styling */
-#theme-toggle {
-    background: #334155;
-    color: white;
-    border: 1px solid #475569;
-    padding: 6px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.85rem;
-    font-weight: 600;
-    transition: all 0.2s ease;
-}
-
-/* 8. References Button */
-.ref-button {
-    margin-top: 30px;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    background-color: #f8fafc;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.ref-button summary {
-    padding: 15px 20px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: #1e293b; 
-    cursor: pointer;
-    list-style: none; 
-    display: flex;
-    align-items: center;
-    transition: background 0.2s ease;
-}
-
-.ref-button summary::before {
-    content: "📁";
-    margin-right: 12px;
-    font-size: 1.1rem;
-    transition: transform 0.3s ease;
-}
-
-.ref-button[open] summary::before {
-    transform: rotate(90deg);
-}
-
-.ref-button[open] {
-    border-color: #3b82f6;
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
-}
-
-.ref-button[open] summary {
-    border-bottom: 1px solid #e2e8f0;
-    background-color: #eff6ff;
-    color: #3b82f6;
-}
-
-.ref-content {
-    padding: 20px;
-    font-size: 0.85rem;
-    color: #475569;
-}
-
-.ref-content ul {
-    list-style: disc;
-    padding-left: 20px;
-    margin: 0;
-}
-
-.ref-content li {
-    margin-bottom: 10px;
-}
-
-.ref-content a {
-    color: #3b82f6;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-/* --- 9. DARK MODE LOGIC (The "Smart" Version) --- */
-
-/* Manual Toggle and Automatic System Preference */
-@media (prefers-color-scheme: dark) {
-    body:not(.light-mode) {
-        background-color: #0f172a;
-        color: #f8fafc;
-    }
-    body:not(.light-mode) .post-list li, 
-    body:not(.light-mode) .about-card,
-    body:not(.light-mode) .ref-button {
-        background-color: #1e293b;
-        border-color: #334155;
-    }
-    body:not(.light-mode) h1, 
-    body:not(.light-mode) h2, 
-    body:not(.light-mode) h3,
-    body:not(.light-mode) .post-list h3,
-    body:not(.light-mode) .ref-button summary {
-        color: #f8fafc;
-    }
-    body:not(.light-mode) .ref-content,
-    body:not(.light-mode) footer {
-        color: #94a3b8;
-    }
-    body:not(.light-mode) .post-list a {
-        background: #334155;
-        color: #3b82f6;
-    }
-    body:not(.light-mode) #theme-toggle {
-        background: #f8fafc;
-        color: #0f172a;
-    }
-}
-
-/* Specific class for when the button is clicked */
-body.dark-mode {
-    background-color: #0f172a;
-    color: #f8fafc;
-}
-body.dark-mode .post-list li, 
-body.dark-mode .about-card,
-body.dark-mode .ref-button {
-    background-color: #1e293b;
-    border-color: #334155;
-}
-body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode .post-list h3 {
-    color: #f8fafc;
-}
-body.dark-mode .post-list a {
-    background: #334155;
-    color: #3b82f6;
-}
-body.dark-mode #theme-toggle {
-    background: #f8fafc;
-    color: #0f172a;
-}
-
-/* --- 10. Carousel Transitions --- */
-#carousel-img {
-    transition: opacity 0.5s ease-in-out;
-}
-
-/* Make sure the label stays on top and looks clean */
-#sport-label {
-    z-index: 10;
-    pointer-events: none;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
