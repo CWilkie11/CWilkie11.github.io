@@ -259,3 +259,15 @@ body.dark-mode #theme-toggle {
     background: #f8fafc;
     color: #0f172a;
 }
+
+/* --- 10. Carousel Transitions --- */
+#carousel-img {
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Make sure the label stays on top and looks clean */
+#sport-label {
+    z-index: 10;
+    pointer-events: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
