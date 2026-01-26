@@ -270,3 +270,38 @@ body.dark-mode .ref-content {
 body.dark-mode .ref-content a {
     color: #60a5fa; 
 }
+/* --- 8. System-Level Dark Mode (Auto-Fix for all pages) --- */
+
+@media (prefers-color-scheme: dark) {
+    /* This makes the page dark if the device is set to dark mode */
+    body {
+        background-color: #0f172a;
+        color: #f8fafc;
+    }
+
+    .post-list li, 
+    .about-card,
+    .ref-button {
+        background-color: #1e293b;
+        border-color: #334155;
+    }
+
+    h1, h2, h3,
+    .post-list h3,
+    .ref-button summary {
+        color: #f8fafc;
+    }
+
+    .ref-content {
+        color: #94a3b8;
+    }
+
+    footer {
+        color: #94a3b8;
+    }
+    
+    .post-list a {
+        background: #334155;
+        color: #3b82f6;
+    }
+}
