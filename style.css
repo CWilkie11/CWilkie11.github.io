@@ -1,4 +1,26 @@
-/* 1. Global Styles & Reset */
+/* 1. Variables - The "Source of Truth" for your colors */
+:root {
+    --bg-main: #f1f5f9;
+    --bg-card: #ffffff;
+    --text-main: #334155;
+    --text-header: #0f172a;
+    --accent: #3b82f6;
+    --border: #e2e8f0;
+    --header-gradient: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+/* Dark Mode Overrides */
+body.dark-mode {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --text-main: #cbd5e1;
+    --text-header: #f8fafc;
+    --accent: #60a5fa;
+    --border: #334155;
+    --header-gradient: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+}
+
+/* 2. Global Styles */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -8,14 +30,14 @@
 body {
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     line-height: 1.6;
-    color: #334155;
-    background-color: #f1f5f9;
+    color: var(--text-main);
+    background-color: var(--bg-main);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* 2. Hero Header */
+/* 3. Hero Header */
 header {
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); 
+    background: var(--header-gradient);
     color: white;
     padding: 60px 20px;
     text-align: center;
@@ -27,72 +49,7 @@ header h1 {
     font-size: 2.8rem;
     margin-bottom: 10px;
     letter-spacing: -1px;
-    color: #f8fafc;
-}
-
-header p {
-    color: #94a3b8;
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* 3. BENTO GRID HERO SECTION */
-.bento-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: 200px 200px;
-    gap: 15px;
-    max-width: 800px;
-    margin: 0 auto 50px auto;
-    padding: 0 20px;
-}
-
-.bento-item {
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    background-color: #1e293b;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.bento-item:hover {
-    transform: translateY(-5px) scale(1.01);
-    box-shadow: 0 15px 30px rgba(59, 130, 246, 0.2);
-}
-
-.large-feature {
-    grid-row: span 2;
-}
-
-.bento-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    filter: brightness(0.9);
-    transition: filter 0.3s ease;
-}
-
-.bento-item:hover img {
-    filter: brightness(1.1);
-}
-
-.bento-tag {
-    position: absolute;
-    bottom: 15px;
-    left: 15px;
-    background: rgba(15, 23, 42, 0.85);
-    backdrop-filter: blur(4px);
-    color: white;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.7rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    border: 1px solid rgba(255,255,255,0.1);
+    color: #f8fafc; /* Keep light text for the dark header */
 }
 
 /* 4. Main Content & Post Cards */
@@ -110,10 +67,10 @@ main {
 }
 
 .post-list li {
-    background: #ffffff;
+    background: var(--bg-card);
     border-radius: 16px; 
     padding: 30px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border);
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
     position: relative;
@@ -127,52 +84,18 @@ main {
     top: 0;
     height: 100%;
     width: 6px;
-    background: #3b82f6; 
+    background: var(--accent); 
 }
 
-.post-list li:hover {
-    transform: translateX(5px);
-    border-color: #3b82f6;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-/* 5. Typography */
 .post-list h3 {
     font-size: 1.5rem;
-    color: #0f172a;
+    color: var(--text-header);
     margin-bottom: 8px;
 }
 
 .post-date {
     display: block;
-    color: #3b82f6;
+    color: var(--accent);
     font-weight: 800;
     font-size: 0.8rem;
     text-transform: uppercase;
-    margin-bottom: 12px;
-    letter-spacing: 1px;
-}
-
-.post-list a {
-    display: inline-block;
-    margin-top: 15px;
-    color: #3b82f6;
-    text-decoration: none;
-    font-weight: 700;
-    background: #eff6ff;
-    padding: 8px 18px;
-    border-radius: 8px;
-    transition: all 0.2s;
-}
-
-.post-list a:hover {
-    background: #3b82f6;
-    color: white;
-}
-
-/* 6. Theme Toggle */
-#theme-toggle {
-    background: #334155;
-    color: white;
-    border: 1px solid #475569;
-    padding: 5px 12px
