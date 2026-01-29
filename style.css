@@ -238,3 +238,12 @@ main {
     display: block;
     border: 1px solid #ddd; /* Adds a clean border to define the image edges */
 }
+
+/* This targets ONLY the image in the post list, protecting your header logo */
+.post-list .post-item img.post-thumbnail {
+    width: 300px !important; 
+    height: auto !important;
+    display: block;
+    margin: 15px 0;
+    border-radius: 8px;
+}
