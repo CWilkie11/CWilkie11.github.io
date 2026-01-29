@@ -41,63 +41,63 @@ body {
 header {
     background: var(--header-gradient);
     color: white;
-    padding: 100px 20px; 
+    padding: 60px 20px; 
     margin-bottom: 40px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    position: relative; /* This is the anchor for the absolute logo */
-    overflow: hidden;    /* Keeps the logo from bleeding outside the header */
-    min-height: 450px;   /* Ensures the header is tall enough for the logo */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
 }
 
-/* This container now keeps text centered while logo floats independently */
+/* This container aligns logo and text perfectly side-by-side */
 .header-brand-container {
+    display: flex;
+    align-items: center;      /* Vertically centers text with the logo */
+    justify-content: flex-start; /* Aligns the whole group to the left */
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    position: relative;
+    gap: 40px;                /* The exact gap you wanted between image and words */
 }
 
 .logo-wrapper {
-    position: absolute;  /* Pulls logo out of the text flow */
-    left: -20px;         /* Moves it to the far left */
-    top: 50%;
-    transform: translateY(-50%); /* Perfectly centers it vertically */
-    z-index: 1;          /* Puts it behind the text slightly */
-    opacity: 0.8;        /* Makes it blend into the background vibe */
+    flex-shrink: 0;           /* Prevents the logo from getting squished */
 }
 
 .site-logo {
-    height: 400px;       /* Back to a massive size */
+    height: 380px;            /* Fills the header height for that bold look */
     width: auto;
-    filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.1));
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.15));
+    transition: transform 0.3s ease;
+}
+
+.site-logo:hover {
+    transform: scale(1.02);
 }
 
 .header-text {
-    text-align: center;  /* Forces the words back to the center */
-    position: relative;
-    z-index: 2;          /* Ensures text is always on top of the logo */
+    text-align: left;         /* Keeps words uniform and aligned away from the logo */
 }
 
 header h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
+    font-size: 3.2rem;        /* Large, powerful font for the Sports Evolution */
+    margin-bottom: 8px;
     letter-spacing: -1px;
     color: #f8fafc;
+    line-height: 1.1;
 }
 
 header p {
     color: #94a3b8;
     font-size: 1.1rem;
     max-width: 600px;
-    margin: 0 auto;      /* Re-centers the tagline */
+    margin: 0;                /* Resets the margin so it stays left-aligned */
 }
 
 .main-nav {
-    margin-bottom: 30px;
-    text-align: center; /* Keeps your navigation links centered at the very top */
+    width: 100%;
+    margin-bottom: 40px;
+    text-align: center;
 }
 
 .main-nav a {
