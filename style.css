@@ -49,19 +49,21 @@ header {
 
 /* NEW: Logo Styling */
 .logo-wrapper {
-    margin-bottom: 20px; /* Space between logo and title */
+    margin-bottom: 20px; /* Space between the logo and your H1 title */
+    display: flex;
+    justify-content: center;
 }
 
 .site-logo {
-    height: 100px; /* Adjust this to your liking */
+    height: 100px; /* Adjust this to make the logo larger or smaller */
     width: auto;
-    /* This makes the grey and neon glitch pop against the dark navy background */
-    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.1)); 
+    /* Adds a subtle glow to help the robot's silhouette stand out */
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.1));
     transition: transform 0.3s ease;
 }
 
 .site-logo:hover {
-    transform: scale(1.05); /* Slight "pulse" effect when hovering */
+    transform: scale(1.05); /* Interactive 'pop' when you hover over the logo */
 }
 
 .main-nav {
