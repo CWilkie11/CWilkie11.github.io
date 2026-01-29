@@ -41,56 +41,58 @@ body {
 header {
     background: var(--header-gradient);
     color: white;
-    padding: 60px 20px;
+    padding: 100px 20px; 
     margin-bottom: 40px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    /* Removed text-align: center; to allow left alignment */
+    position: relative; /* This is the anchor for the absolute logo */
+    overflow: hidden;    /* Keeps the logo from bleeding outside the header */
+    min-height: 450px;   /* Ensures the header is tall enough for the logo */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-/* NEW: This container holds the logo and text side-by-side */
+/* This container now keeps text centered while logo floats independently */
 .header-brand-container {
-    display: flex;
-    align-items: center;     /* Centers them vertically against each other */
-    justify-content: center; /* Keeps the whole group centered in the middle of the screen */
-    gap: 60px;               /* Space between the logo and your title */
-    max-width: 1200px;       /* Limits how wide the header content spreads */
-    margin: 0 auto;          /* Centers the container box */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
 }
 
 .logo-wrapper {
-    flex-shrink: 0;          /* Keeps the logo from getting squished */
+    position: absolute;  /* Pulls logo out of the text flow */
+    left: -20px;         /* Moves it to the far left */
+    top: 50%;
+    transform: translateY(-50%); /* Perfectly centers it vertically */
+    z-index: 1;          /* Puts it behind the text slightly */
+    opacity: 0.8;        /* Makes it blend into the background vibe */
 }
 
 .site-logo {
-    height: 450px;           /* Large, impactful size for the left side */
+    height: 400px;       /* Back to a massive size */
     width: auto;
-    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
-    transition: transform 0.3s ease;
+    filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.1));
 }
 
-.site-logo:hover {
-    transform: scale(1.05);
-}
-
-/* Updated Text Alignment for the new layout */
 .header-text {
-    text-align: left; 
+    text-align: center;  /* Forces the words back to the center */
+    position: relative;
+    z-index: 2;          /* Ensures text is always on top of the logo */
 }
 
 header h1 {
-    font-size: 2.8rem;
+    font-size: 3rem;
     margin-bottom: 10px;
     letter-spacing: -1px;
     color: #f8fafc;
-    text-align: left; /* Overrides the old center setting */
 }
 
 header p {
     color: #94a3b8;
     font-size: 1.1rem;
     max-width: 600px;
-    margin: 0; /* Changed from '0 auto' to '0' to align left */
-    text-align: left;
+    margin: 0 auto;      /* Re-centers the tagline */
 }
 
 .main-nav {
