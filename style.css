@@ -52,8 +52,8 @@ header {
     display: flex;
     align-items: center;     /* Centers them vertically against each other */
     justify-content: center; /* Keeps the whole group centered in the middle of the screen */
-    gap: 40px;               /* Space between the logo and your title */
-    max-width: 1000px;       /* Limits how wide the header content spreads */
+    gap: 60px;               /* Space between the logo and your title */
+    max-width: 1200px;       /* Limits how wide the header content spreads */
     margin: 0 auto;          /* Centers the container box */
 }
 
@@ -62,9 +62,9 @@ header {
 }
 
 .site-logo {
-    height: 200px;           /* Large, impactful size for the left side */
+    height: 450px;           /* Large, impactful size for the left side */
     width: auto;
-    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.15));
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
     transition: transform 0.3s ease;
 }
 
