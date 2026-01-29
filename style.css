@@ -205,4 +205,29 @@ main {
     transform: scale(0.95);
 }
 
+/* About Page Carousel */
+.carousel-container {
+    display: flex;
+    overflow-x: auto;      
+    scroll-snap-type: x mandatory; 
+    gap: 15px;
+    padding: 10px 0;
+    scrollbar-width: none; 
+}
 
+.carousel-container::-webkit-scrollbar {
+    display: none; 
+}
+
+.carousel-slide {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 350px; 
+    object-fit: cover; 
+}
