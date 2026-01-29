@@ -227,3 +227,14 @@ main {
     /* This ensures the whole photo fits inside the frame */
     object-fit: contain; 
 }
+
+/* Styles for the new post images */
+.post-thumbnail {
+    width: 100%;
+    max-width: 450px; /* Limits the size so it doesn't take over the page */
+    height: auto;
+    border-radius: 10px;
+    margin: 15px 0;
+    display: block;
+    border: 1px solid #ddd; /* Adds a clean border to define the image edges */
+}
