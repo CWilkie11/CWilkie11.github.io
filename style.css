@@ -39,34 +39,63 @@ body {
 
 /* 3. Hero Header */
 header {
-   background: var(--header-gradient);
+    background: var(--header-gradient);
     color: white;
-    padding: 40px 20px 60px 20px; /* Reduced top padding to accommodate logo */
-    text-align: center;
+    padding: 60px 20px;
     margin-bottom: 40px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    /* Removed text-align: center; to allow left alignment */
 }
 
-/* Logo Styling - Under Wording */
-.logo-wrapper {
+/* NEW: This container holds the logo and text side-by-side */
+.header-brand-container {
     display: flex;
-    justify-content: center;
-    margin-top: 30px; /* Space between the tagline and the logo */
+    align-items: center;     /* Centers them vertically against each other */
+    justify-content: center; /* Keeps the whole group centered in the middle of the screen */
+    gap: 40px;               /* Space between the logo and your title */
+    max-width: 1000px;       /* Limits how wide the header content spreads */
+    margin: 0 auto;          /* Centers the container box */
+}
+
+.logo-wrapper {
+    flex-shrink: 0;          /* Keeps the logo from getting squished */
 }
 
 .site-logo {
-    height: 180px; /* Large and powerful size */
-    width: auto;   /* Maintains proportions */
-    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.15)); /* Pops the sting grey against the dark blue */
+    height: 200px;           /* Large, impactful size for the left side */
+    width: auto;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.15));
     transition: transform 0.3s ease;
 }
 
 .site-logo:hover {
-    transform: scale(1.05); /* Interactive pop on hover */
+    transform: scale(1.05);
+}
+
+/* Updated Text Alignment for the new layout */
+.header-text {
+    text-align: left; 
+}
+
+header h1 {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+    color: #f8fafc;
+    text-align: left; /* Overrides the old center setting */
+}
+
+header p {
+    color: #94a3b8;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0; /* Changed from '0 auto' to '0' to align left */
+    text-align: left;
 }
 
 .main-nav {
     margin-bottom: 30px;
+    text-align: center; /* Keeps your navigation links centered at the very top */
 }
 
 .main-nav a {
