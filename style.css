@@ -47,23 +47,22 @@ header {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* NEW: Logo Styling */
+/* Logo Styling - Under Wording */
 .logo-wrapper {
-    margin-bottom: 20px; /* Space between the logo and your H1 title */
     display: flex;
     justify-content: center;
+    margin-top: 30px; /* Space between the tagline and the logo */
 }
 
 .site-logo {
-    height: 100px; /* Adjust this to make the logo larger or smaller */
-    width: auto;
-    /* Adds a subtle glow to help the robot's silhouette stand out */
-    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.1));
+    height: 180px; /* Large and powerful size */
+    width: auto;   /* Maintains proportions */
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.15)); /* Pops the sting grey against the dark blue */
     transition: transform 0.3s ease;
 }
 
 .site-logo:hover {
-    transform: scale(1.05); /* Interactive 'pop' when you hover over the logo */
+    transform: scale(1.05); /* Interactive pop on hover */
 }
 
 .main-nav {
