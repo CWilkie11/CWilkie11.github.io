@@ -39,16 +39,33 @@ body {
 
 /* 3. Hero Header */
 header {
-    background: var(--header-gradient);
+   background: var(--header-gradient);
     color: white;
-    padding: 60px 20px;
+    padding: 40px 20px 60px 20px; /* Reduced top padding to accommodate logo */
     text-align: center;
     margin-bottom: 40px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* NEW: Logo Styling */
+.logo-wrapper {
+    margin-bottom: 20px; /* Space between logo and title */
+}
+
+.site-logo {
+    height: 100px; /* Adjust this to your liking */
+    width: auto;
+    /* This makes the grey and neon glitch pop against the dark navy background */
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.1)); 
+    transition: transform 0.3s ease;
+}
+
+.site-logo:hover {
+    transform: scale(1.05); /* Slight "pulse" effect when hovering */
+}
+
 .main-nav {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .main-nav a {
