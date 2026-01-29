@@ -49,24 +49,23 @@ header {
     align-items: center;
 }
 
-/* This container aligns logo and text perfectly side-by-side */
 .header-brand-container {
     display: flex;
-    align-items: center;      /* Vertically centers text with the logo */
-    justify-content: flex-start; /* Aligns the whole group to the left */
+    align-items: center;      
+    justify-content: center; /* Centered grouping for pro look */
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    gap: 40px;                /* The exact gap you wanted between image and words */
+    gap: 40px;                
 }
 
 .logo-wrapper {
-    flex-shrink: 0;           /* Prevents the logo from getting squished */
+    flex-shrink: 0;           
 }
 
 .site-logo {
-    height: 380px;            /* Fills the header height for that bold look */
-    width: auto;
+    height: 380px !important; 
+    width: auto !important;
     filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.15));
     transition: transform 0.3s ease;
 }
@@ -76,11 +75,11 @@ header {
 }
 
 .header-text {
-    text-align: left;         /* Keeps words uniform and aligned away from the logo */
+    text-align: left;         
 }
 
 header h1 {
-    font-size: 3.2rem;        /* Large, powerful font for the Sports Evolution */
+    font-size: 3.2rem;        
     margin-bottom: 8px;
     letter-spacing: -1px;
     color: #f8fafc;
@@ -91,7 +90,7 @@ header p {
     color: #94a3b8;
     font-size: 1.1rem;
     max-width: 600px;
-    margin: 0;                /* Resets the margin so it stays left-aligned */
+    margin: 0;                
 }
 
 .main-nav {
@@ -105,20 +104,6 @@ header p {
     text-decoration: none;
     margin-right: 15px;
     font-weight: 600;
-}
-
-header h1 {
-    font-size: 2.8rem;
-    margin-bottom: 10px;
-    letter-spacing: -1px;
-    color: #f8fafc;
-}
-
-header p {
-    color: #94a3b8;
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 0 auto;
 }
 
 /* 4. Main Content & Post Cards */
@@ -205,7 +190,11 @@ main {
     transform: scale(0.95);
 }
 
-/* About Page Carousel */
+/* 6. About Page Carousel */
+.about-carousel {
+    margin: 20px 0;
+}
+
 .carousel-container {
     display: flex;
     overflow-x: auto;      
@@ -224,6 +213,7 @@ main {
     scroll-snap-align: center;
     border-radius: 12px;
     overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .carousel-slide img {
