@@ -283,3 +283,36 @@ main {
     left: 0;
     color: var(--accent);
 }
+
+/* 9. Typography Spacing & Vertical Rhythm */
+
+/* Space out the main titles on article pages */
+.full-post h1 {
+    margin-bottom: 24px;
+    line-height: 1.2;
+}
+
+/* Space between section headers and paragraphs */
+.post-section h2, 
+.post-section h3 {
+    margin-top: 35px;    /* Space above the header to separate from previous section */
+    margin-bottom: 15px; /* Space below the header before the text starts */
+    color: var(--text-header);
+}
+
+/* Add breathing room between paragraphs */
+.post-section p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    line-height: 1.7; /* Improves readability for long-form content */
+}
+
+/* Space inside the homepage cards specifically */
+.post-item h3 {
+    margin-top: 10px;
+    margin-bottom: 12px;
+}
+
+.post-item p {
+    margin-bottom: 15px;
+}
