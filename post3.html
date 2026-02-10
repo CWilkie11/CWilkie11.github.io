@@ -3,57 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WaitTime AI: Ending Concession Lines | CAH 205</title>
+    <title>WaitTime AI | HyperDrive AI</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <nav style="margin-bottom: 20px;">
-            <a href="index.html" style="color: #94a3b8; text-decoration: none;">← Back to Home</a>
+        <nav class="main-nav">
+            <a href="index.html">← Back to Home</a>
+            <a href="about.html">About</a>
+            <button id="theme-toggle">🌙 Dark Mode</button>
         </nav>
-        <h1>HyperDrive AI: The Sports Evolution</h1>
-        <p>Curated by <strong>Coltan Wilkie</strong></p>
+        <div class="header-text">
+            <h1>HyperDrive AI: The Sports Evolution</h1>
+            <p>Curated by <strong>Coltan Wilkie</strong></p>
+        </div>
     </header>
 
     <main>
-        <article class="about-card">
+        <article class="full-post">
             <span class="post-date">January 24, 2026</span>
-            <h2>The End of the Concession Line: "WaitTime" AI Deploys Computer Vision to Concourses</h2>
+            <h1>The End of the Concession Line: WaitTime AI</h1>
             
-            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #e2e8f0;">
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border);">
 
-            <h3>The News</h3>
-            <p>
-                For most fans, the worst part of gameday isn't a loss—it's spending twenty minutes in line for a hot dog and missing a game-changing play. To solve this, major venues like Ohio Stadium (cap 102,780) have fully integrated "WaitTime," an AI-powered computer vision system that monitors concession flow in real-time. Unlike older systems that just counted people entering a zone, this AI distinguishes between fans walking by and those actually standing in an active queue.
-            </p>
+            <section class="post-section">
+                <h3>The News</h3>
+                <p>
+                    For most fans, the worst part of gameday isn't a loss—it's spending twenty minutes in line for a hot dog and missing a game-changing play. To solve this, major venues like Ohio Stadium have fully integrated "WaitTime," an AI-powered computer vision system that monitors concession flow in real-time. Unlike older systems that just counted people entering a zone, this AI distinguishes between fans walking by and those actually standing in an active queue.
+                </p>
 
-            <h3>The Details</h3>
-            <p>
-                The technology uses overhead cameras and AI sensors to analyze crowd density and movement patterns anonymously. This data is then pushed directly to the stadium’s mobile app and concourse digital signage. For example, a fan in Section 104 can look at their phone and see that the pizza stand at Gate 7 has a 2-minute wait, while the one at Gate 2 is backed up for 15 minutes. 
-            </p>
-            <p>
-                By redistributing fans to "low-traffic" stands, venues are increasing concession revenue while simultaneously reducing hallway congestion.
-            </p>
+                <h3>The Details</h3>
+                <p>
+                    The technology uses overhead cameras and AI sensors to analyze crowd density and movement patterns anonymously. This data is then pushed directly to the stadium’s mobile app and concourse digital signage. For example, a fan in Section 104 can look at their phone and see that the pizza stand at Gate 7 has a 2-minute wait, while the one at Gate 2 is backed up for 15 minutes. 
+                </p>
+                <p>
+                    By redistributing fans to "low-traffic" stands, venues are increasing concession revenue while simultaneously reducing hallway congestion.
+                </p>
 
-            <h3>Context & Perspective</h3>
-            <p>
-                This is a perfect example of AI solving a "friction point" that has existed since stadiums were first built. I chose to cover this because it moves AI out of the "cool gadget" category and into a core business tool. 
-            </p>
-            <p>
-                From an operations standpoint, it’s not just about fan happiness; it’s about staffing efficiency. If the AI sees a surge at a specific gate, managers can move staff in real-time rather than guessing. It turns the stadium into a giant, living data set that reacts to how we move.
-            </p>
-
-            <details class="ref-button" style="margin-top: 30px;">
-                <summary>View Article Sources & References</summary>
-                <div class="ref-content">
-                    <ul>
-                        <li><strong>WaitTime:</strong> <a href="https://www.thewaittimes.com/" target="_blank">Crowd Intelligence Platform Overview</a></li>
-                        <li><strong>Sports Business Journal:</strong> <a href="https://www.sportsbusinessjournal.com/Articles/2025/01/22/Tech/ohio-state-waitime/" target="_blank">WaitTime, Ohio State help fans avoid long concession and bathroom lines</a> (Jan 22, 2025)</li>
-                    </ul>
+                <div class="perspective-box">
+                    <h3>Context & Perspective</h3>
+                    <p>
+                        This is a perfect example of AI solving a "friction point" that has existed since stadiums were first built. I chose to cover this because it moves AI out of the "cool gadget" category and into a core business tool. From an operations standpoint, it’s not just about fan happiness; it’s about staffing efficiency. It turns the stadium into a giant, living data set that reacts to how we move.
+                    </p>
                 </div>
-            </details>
+            </section>
 
+            <details style="margin-top: 30px; cursor: pointer;">
+                <summary style="font-weight: bold; color: var(--accent);">View Article Sources & References</summary>
+                <ul class="source-list" style="margin-top: 15px;">
+                    <li><strong>WaitTime:</strong> <a href="https://www.thewaittimes.com/" target="_blank">Crowd Intelligence Platform Overview</a></li>
+                    <li><strong>Sports Business Journal:</strong> <a href="https://www.sportsbusinessjournal.com/Articles/2025/01/22/Tech/ohio-state-waitime/" target="_blank">WaitTime at Ohio State</a> (Jan 22, 2025)</li>
+                </ul>
+            </details>
         </article>
     </main>
 
@@ -61,7 +63,6 @@
         <p>&copy; 2026 Coltan Wilkie | CAH 205 AI Newsletter Project</p>
     </footer>
 
-  <script src="script.js"></script>
-    
+    <script src="script.js"></script>
 </body>
 </html>
