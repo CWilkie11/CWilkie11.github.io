@@ -247,3 +247,39 @@ main {
     margin: 15px 0;
     border-radius: 8px;
 }
+
+/* Post 5 Article Styling */
+.full-post {
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    margin-bottom: 50px;
+}
+
+.perspective-box {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(15, 23, 42, 0.05) 100%);
+    padding: 25px;
+    border-left: 5px solid var(--accent);
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+.source-list {
+    list-style: none;
+    padding: 0;
+    font-size: 0.9rem;
+}
+
+.source-list li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.source-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+}
