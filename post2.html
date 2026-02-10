@@ -3,50 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Athlete Performance Optimization | CAH 205</title>
+    <title>Athlete Performance | HyperDrive AI</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <nav style="margin-bottom: 20px;">
-            <a href="index.html" style="color: #94a3b8; text-decoration: none;">← Back to Home</a>
+        <nav class="main-nav">
+            <a href="index.html">← Back to Home</a>
+            <a href="about.html">About</a>
+            <button id="theme-toggle">🌙 Dark Mode</button>
         </nav>
-        <h1>HyperDrive AI: The Sports Evolution</h1>
-        <p>Curated by <strong>Coltan Wilkie</strong></p>
+        <div class="header-text">
+            <h1>HyperDrive AI: The Sports Evolution</h1>
+            <p>Curated by <strong>Coltan Wilkie</strong></p>
+        </div>
     </header>
 
     <main>
-        <article class="about-card">
-            <span class="post-date">January 18, 2026</span>
-            <h2>Athlete Performance Optimization: STATSports Integrates AI for Next-Level Recovery Insights</h2>
+        <article class="full-post">
+            <span class="post-date">January 17, 2026</span>
+            <h1>Athlete Performance Optimization: STATSports Integrates AI</h1>
             
-            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #e2e8f0;">
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border);">
 
-            <h3>The News</h3>
-            <p>
-                Leading GPS tracking company STATSports has recently rolled out a significant AI integration into its Apex athlete monitoring platform. This enhancement moves beyond simply collecting performance metrics like distance covered or sprint speeds. The new AI algorithms now analyze individual athlete data in conjunction with external factors—like sleep quality from wearables and training load—to provide highly personalized recovery and injury prevention recommendations.
-            </p>
+            <section class="post-section">
+                <h3>The News</h3>
+                <p>
+                    Leading GPS tracking company STATSports has recently rolled out a significant AI integration into its Apex athlete monitoring platform. This enhancement moves beyond simply collecting performance metrics like distance covered or sprint speeds. The new AI algorithms now analyze individual athlete data in conjunction with external factors—like sleep quality from wearables and training load—to provide highly personalized recovery and injury prevention recommendations.
+                </p>
 
-            <h3>The Details</h3>
-            <p>
-                The updated Apex system leverages machine learning to detect patterns indicative of overtraining or impending fatigue long before they become apparent to the human eye. For example, if an athlete's counter-movement jump height shows a subtle but consistent decline over three sessions, combined with a dip in sleep quality data, the AI might recommend an active recovery day or reduced training volume for the next 24-48 hours.
-            </p>
+                <h3>The Details</h3>
+                <p>
+                    The updated Apex system leverages machine learning to detect patterns indicative of overtraining or impending fatigue long before they become apparent to the human eye. For example, if an athlete's counter-movement jump height shows a subtle but consistent decline over three sessions, combined with a dip in sleep quality data, the AI might recommend an active recovery day or reduced training volume for the next 24-48 hours.
+                </p>
 
-            <h3>Context & Perspective</h3>
-            <p>
-                This development is crucial because player welfare and peak performance are two sides of the same coin in elite sports. For teams, a healthy roster means a competitive advantage and protection of multi-million dollar investments in talent. I chose this because it highlights how AI is making sense of disparate data points to create a holistic view of athlete readiness. It's no longer just about pushing boundaries, but understanding when and how to push them effectively.
-            </p>
-
-            <details class="ref-button" style="margin-top: 30px;">
-                <summary>View Article Sources & References</summary>
-                <div class="ref-content">
-                    <ul>
-                        <li><strong>STATSports:</strong> <a href="https://statsports.com/article/statsports-named-loscs-official-new-gps-performance-tracking-partner" target="_blank">STATSports named LOSC’s official new GPS performance tracking partner</a> (2026)</li>
-                    </ul>
+                <div class="perspective-box">
+                    <h3>Context & Perspective</h3>
+                    <p>
+                        This development is crucial because player welfare and peak performance are two sides of the same coin in elite sports. For teams, a healthy roster means a competitive advantage and protection of multi-million dollar investments in talent. I chose this because it highlights how AI is making sense of disparate data points to create a holistic view of athlete readiness. It's no longer just about pushing boundaries, but understanding when and how to push them effectively.
+                    </p>
                 </div>
-            </details>
+            </section>
 
+            <details style="margin-top: 30px; cursor: pointer;">
+                <summary style="font-weight: bold; color: var(--accent);">View Article Sources & References</summary>
+                <ul class="source-list" style="margin-top: 15px;">
+                    <li><strong>STATSports:</strong> <a href="https://statsports.com/article/statsports-named-loscs-official-new-gps-performance-tracking-partner" target="_blank">STATSports named LOSC’s official partner</a> (2026)</li>
+                    <li><strong>Performance Science:</strong> Research on counter-movement jump metrics and fatigue.</li>
+                </ul>
+            </details>
         </article>
     </main>
 
@@ -54,7 +60,6 @@
         <p>&copy; 2026 Coltan Wilkie | CAH 205 AI Newsletter Project</p>
     </footer>
 
-  <script src="script.js"></script>
-    
+    <script src="script.js"></script>
 </body>
 </html>
