@@ -478,3 +478,66 @@ html { scroll-behavior: smooth; }
 .source-list details li::before {
     content: ""; /* Removes the global "→" so it doesn't double up */
 }
+
+/* --- Interactive Source Dropdowns --- */
+
+.source-list details {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.source-list details[open] {
+    border-color: #00d4ff;
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.1);
+}
+
+.source-list summary {
+    font-weight: 700;
+    color: #00d4ff;
+    list-style: none; /* Removes default browser arrow */
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+/* Custom Animated Arrow */
+.source-list summary::before {
+    content: "▶";
+    display: inline-block;
+    width: 25px;
+    font-size: 0.7rem;
+    transition: transform 0.2s ease;
+}
+
+.source-list details[open] summary::before {
+    transform: rotate(90deg);
+}
+
+/* Resetting the global list styles inside the dropdowns */
+.source-list details ul {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border);
+    list-style: none;
+}
+
+.source-list details li {
+    padding-left: 0;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    border-top: none; /* Removes any top borders from previous sections */
+}
+
+/* This line specifically stops the "double arrow" issue */
+.source-list details li::before {
+    content: none; 
+}
