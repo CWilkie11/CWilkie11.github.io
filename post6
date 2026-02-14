@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Intelligent Games | HyperDrive AI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-mode">
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <button id="dark-mode-toggle">🌙 Dark Mode</button>
+    </nav>
+
+    <div class="capstone-container">
+        <header>
+            <h1>The Intelligent Games: How AI Rebuilt the 2026 Winter Olympics</h1>
+            <p class="post-meta">Curated by <strong>Coltan Wilkie</strong> | February 14, 2026</p>
+        </header>
+
+        <article class="full-post">
+            <p class="intro-text">
+                The "Cloud Olympics" are over. At the Milano Cortina 2026 Games, we have officially entered the era of the <strong>Intelligent Olympics</strong>. For the first time in history, the boundary between an athlete’s physical movement and digital data has completely dissolved, transforming the Games into a living, breathing AI laboratory. From "gut-feeling" judging to biomechanical "Digital Twins," the tech stack behind this year’s medals is as impressive as the athletes themselves.
+            </p>
+
+            <div class="jump-menu">
+                <h3>INTEL REPORT CONTENTS:</h3>
+                <ul>
+                    <li><a href="#performance">01. ATHLETE PERFORMANCE</a></li>
+                    <li><a href="#officiating">02. OFFICIATING & BIAS</a></li>
+                    <li><a href="#fan-experience">03. FAN EXPERIENCE</a></li>
+                    <li><a href="#infrastructure">04. CYBER & INFRASTRUCTURE</a></li>
+                </ul>
+            </div>
+
+            <section id="performance" class="post-section">
+                <h2>01. The Bio-Mechanical Frontier</h2>
+                <p>In 2026, the "eye test" has been replaced by the "AI test." At the Milano Cortina Games, the boundary between an athlete’s physical movement and digital data has completely dissolved, turning the slopes and rinks into high-tech laboratories. For elite competitors, where the difference between gold and a "near miss" is often measured in 0.003 seconds, these tools provide a prescriptive edge that was once the stuff of science fiction.</p>
+
+                <h3>The Pocket Lab: 2D-to-3D Computer Vision</h3>
+                <p>A breakthrough collaboration between <strong>Google Cloud and U.S. Ski & Snowboard</strong> has democratized high-end biomechanical analysis. Traditionally, high-precision motion capture required expensive labs and specialized suits; today, Team USA athletes like Maddie Mastro and Alex Hall are using standard smartphones to map 3D motion directly from 2D video. Powered by Gemini and Google DeepMind, the platform analyzes airtime, rotation speeds, and takeoff angles in near real-time.</p>
+                
+                <img src="images/post6-biomechanics.jpg" alt="3D Biomechanical Model Visualization" class="post-image">
+
+                <h3>The 8K Performance "Digital Twin"</h3>
+                <p>On the ice, the level of scrutiny is even higher. Official timekeeper <strong>Omega</strong> and its Swiss Timing division have deployed a massive array of 14 8K-resolution cameras around the figure skating rinks. These cameras, capable of capturing up to 40,000 frames per second, feed data into an AI system that generates a continuous "Digital Twin" of the athlete. This system measures movement along three axes (X, Y, and Z) to track jump height and landing velocity with millimeter precision.</p>
+
+                <h3>Injury Prevention and Physiological Load</h3>
+                <p>Beyond technical tricks, AI is being used as a "pre-emptive medic" to manage the extreme physical toll of the winter climate. Teams from Canada and the U.S. are heavily integrating AI-enabled wearables, such as <strong>Whoop and Catapult</strong>, to monitor Heart Rate Variability (HRV) and skin temperature. By utilizing machine learning to analyze these workload metrics, coaches can detect "micro-changes" in a skier’s stride or recovery markers that signal the onset of an overuse injury.</p>
+            </section>
+
+            <section id="officiating" class="post-section">
+                <h2>02. The New Arbiters of Truth</h2>
+                <p>In subjective sports, a judge’s "gut feeling" has historically been the difference between Gold and Silver. At the Milano Cortina 2026 Games, the International Skating Union (ISU) is finally moving the goalposts, using AI to solve the "intense cognitive pressure" that often leads to scoring scandals. By shifting technical verification to machines, the Olympics aims to restore a level of transparency that has been missing since the Salt Lake City scandal of 2002.</p>
+
+                <h3>Erasing the "Missed Rotation"</h3>
+                <p>The most frequent disputes in figure skating involve whether a jump reached the required number of rotations or if an athlete used the correct blade edge on takeoff. To combat this, the ISU has integrated AI-driven computer vision into the technical review process. Using the 14-camera 8K array, the system provides judges with an instant "Red/Green" verification of technical elements. This AI objectively counts rotations and measures entry angles in milliseconds, ensuring that the "Base Value" of a score is fixed by physics before a human judge even considers the artistic "Grade of Execution."</p>
+
+                <img src="images/post6-judging.jpg" alt="AI Anonymized Stick Figure Overlay" class="post-image">
+
+                <h3>The Fight Against Reputation Bias</h3>
+                <p>To address "reputation scoring," officials are testing anonymized AI overlays. This technology strips away an athlete's face, clothing, and national colors in the replay booth, leaving only a biomechanical "stick figure." By forcing officials to judge the pure geometry and force of a movement rather than the person performing it, the Olympics is taking its biggest step toward eliminating nationalistic bias and ensuring that the podium is decided by data, not fame.</p>
+
+                <h3>The "Digital Guardrail" for Judges</h3>
+                <p>Beyond the live score, the ISU is now using AI as a retrospective audit tool. By analyzing over 750,000 previous marks, AI identifies patterns where specific judges may be consistently overscoring certain nations or failing to catch technical errors. This "Digital Guardrail" ensures that if a judge’s scores deviate significantly from the objective data provided by the camera sensors, the performance is automatically flagged for a secondary review.</p>
+            </section>
+
+            <section id="fan-experience" class="post-section">
+                <h2>03. The Broadcast Revolution</h2>
+                <p>The 2026 Games have moved from "watching the broadcast" to "interacting with the event." Olympic Broadcasting Services (OBS) is leveraging a massive tech stack to bridge the gap between casual fans and technical experts, ensuring that the sheer speed and complexity of winter sports are finally accessible to a global audience.</p>
+
+                <h3>The "Olympic GPT" Personal Assistant</h3>
+                <p>For the first time in Olympic history, the IOC has launched an official Large Language Model (LLM) assistant, powered by <strong>Alibaba’s Qwen models</strong>. Embedded on the official Olympics website, this "Olympic AI Assistant" provides fans with real-time, multilingual conversational support. Whether a viewer needs a breakdown of the complex "sweeping" physics in curling or a live update on medal tallies, the AI provides instant, cited answers.</p>
+
+                <h3>The Autonomous Eye and "Spacetime Slices"</h3>
+                <p>To capture the visceral sensation of speed, OBS has deployed 15 first-person-view (FPV) drones that shadow downhill skiers and bobsledders at speeds exceeding 90 MPH. Complementing these "impossible" angles is the new "Spacetime Slices" replay technology. This AI-driven feature composites multiple phases of an athlete's movement—such as the entire trajectory of a ski jump—into a single 3D visual, allowing commentators to "freeze" time and rotate the camera around the athlete’s mid-air form.</p>
+                
+                <img src="images/post6-drone.jpg" alt="AI FPV Drone Perspective" class="post-image">
+
+                <h3>The 15-Second Highlight Loop</h3>
+                <p>With over 6,500 hours of footage produced, OBS uses an "AI Highlights Generation" system that scans every second of live video. Using advanced triggers—such as crowd noise spikes, athlete facial expressions, and biometric peaks—the AI automatically cuts, tags, and packages highlight reels in real-time. This system ensures that a gold-medal moment is trending on social media before the athlete has even finished their victory lap.</p>
+            </section>
+
+            <section id="infrastructure" class="post-section">
+                <h2>04. The Invisible Infrastructure</h2>
+                <p>While the world watches the podium, a secondary "Intelligent Games" is occurring within the digital and physical infrastructure. These "invisible" AI layers are the literal backbone of Milano Cortina 2026, ensuring the Games are secure from global threats and meet the highest sustainability standards.</p>
+
+                <h3>The AI Cybersecurity Shield</h3>
+                <p>To counter state-sponsored hacktivism and ransomware, Italy's National Cybersecurity Agency (ACN) has established a 24/7 cybersecurity command center in Rome. This facility utilizes AI-driven analytics to manage the massive volume of data generated by the Games, detecting anomalies and deepfake phishing attempts with a speed that human analysts cannot match, protecting the personal data of over 3,000 athletes.</p>
+
+                <h3>Digital Twins and Smart Sustainability</h3>
+                <p>Organizers are leaning on "Digital Twin" technology—dynamic virtual models of venues like the San Siro and the Bormio slopes. These twins integrate real-time sensor data to optimize energy usage and crowd flow. By simulating the movements of thousands of virtual spectators, engineers have been able to adjust heating and lighting schedules, contributing to a projected 30% reduction in electricity use.</p>
+
+                <img src="images/post6-digitaltwin.jpg" alt="Digital Twin Energy Heat Map" class="post-image">
+
+                <h3>Intelligent Snowmaking</h3>
+                <p>With snowfall patterns becoming increasingly unpredictable, high-efficiency automated systems now use AI to combine weather forecasts with GPS-based monitoring. These systems ensure that snow guns produce only the exact volume of "machine-made snow" needed for fair competition, powered largely by renewable energy sources, preserving millions of liters of water in local Alpine reservoirs.</p>
+            </section>
+
+            <div class="perspective-box">
+                <h2>The HyperDrive Perspective</h2>
+                <p>The Milano Cortina 2026 Games have proven that AI is no longer a "side-car" to the sports industry—it is the engine. We have moved from the "Cloud Olympics" to the <strong>Intelligent Olympics</strong>, where performance is quantified, judging is objectified, and the very ground beneath the athletes' feet is managed by a digital mind. As we look toward 2030, success is no longer just about who is faster, higher, or stronger, but about who has the most integrated intelligence behind them.</p>
+            </div>
+
+            <footer class="source-list">
+                <h2>Sources & References</h2>
+                
+                <h3>Section A: Athlete Performance</h3>
+                <ul>
+                    <li>DeGeurin, M. (2026, February 11). <a href="https://www.popsci.com/technology/camera-technology-2026-winter-olympics/">The Tech behind the Olympics: High-speed cameras, sensors, and annoying drones</a>. Popular Science.</li>
+                    <li>Google. (2026, February 5). <a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/us-ski-snowboard-tool-winter-olympics-2026/">How Google Cloud is helping Team USA elevate their tricks with AI</a>. Google.</li>
+                    <li>KGW News. (n.d.). <a href="https://www.youtube.com/watch?v=BKOb6QMRTHs">Intel AI program helps Olympians train</a>. YouTube.</li>
+                    <li>The Olympic and Paralympic Games Milano Cortina 2026: Omega®. <a href="https://www.omegawatches.com/world-of-omega/olympic-and-paralympic-games/milano-cortina-2026">Omega Official Site</a>.</li>
+                </ul>
+
+                <h3>Section B: Officiating</h3>
+                <ul>
+                    <li>CGTN. (2026, February 11). <a href="https://news.cgtn.com/news/2026-02-11/International-Skating-Union-weighs-AI-s-role-in-judging--1KFKl1sSgLK/p.html">International Skating Union weighs AI’s role in judging</a>. CGTN.</li>
+                    <li>Ji-han, Y. (2026). <a href="https://www.chosun.com/english/industry-en/2026/02/12/JF6UQSPS3BBBFHDED65WT5CSOY/">AI measures skating, bobsleigh to millionths</a>. The Chosun Daily.</li>
+                    <li>Perobelli, A. (2026, February 14). <a href="https://www.straitstimes.com/sport/figure-skating-isu-stands-by-ice-dance-scoring-amid-olympic-fan-backlash">Figure skating-ISU stands by ice dance scoring</a>. The Straits Times.</li>
+                </ul>
+
+                <h3>Section C: Fan Experience</h3>
+                <ul>
+                    <li>Taiwan News. (2026, February 4). <a href="https://www.taiwannews.com.tw/news/6296158">Alibaba brings cloud-based AI innovation to Milano Cortina 2026</a>.</li>
+                    <li>Bevir, G. (2026, February 11). <a href="https://www.svgeurope.org/blog/headlines/milano-cortina-2026-obs-expands-ai-powered-content-workflows/">Milano Cortina 2026: OBS expands AI-powered content workflows</a>. SVG Europe.</li>
+                    <li>NewscastStudio. (2026, February 12). <a href="https://www.newscaststudio.com/2026/02/12/fpv-drones-deliver-athlete-perspective-with-winter-olympics-debut/">FPV drones deliver athlete perspective</a>.</li>
+                </ul>
+
+                <h3>Section D: Infrastructure</h3>
+                <ul>
+                    <li>Feingold, S. (2026, February 11). <a href="https://www.weforum.org/stories/2026/02/2026-milan-cortina-olympic-games-cyber-target-how-defenders-responding/">The Milan-Cortina 2026 games are a prime cyber target</a>. World Economic Forum.</li>
+                    <li>Lin, C.-J. (n.d.). <a href="https://www.ingenia.org.uk/articles/perfecting-the-slopes-for-the-2026-winter-olympics/">Milan‑Cortina 2026: Engineering snow and speed on the slopes</a>. Ingenia.</li>
+                    <li>Zimmerman, B. (2026, January 10). <a href="https://www.tomorrowsworldtoday.com/technology/milano-cortina-2026-digital-twins-allow-engineers-to-visit-venues-before-they-exist/">Milano Cortina 2026: Digital Twins allow engineers to visit venues before they exist</a>. Tomorrow’s World Today®.</li>
+                </ul>
+            </footer>
+        </article>
+    </div>
+
+    <footer>
+        <p>© 2026 Coltan Wilkie | CAH 205 AI Newsletter Project</p>
+    </footer>
+
+</body>
+</html>
