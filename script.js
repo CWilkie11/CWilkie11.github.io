@@ -1,5 +1,9 @@
+// Global variables to hold the two assets being compared
+let assetA = null;
+let assetB = null;
+
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. THEME LOGIC
+    // 1. THEME LOGIC (Preserved from your original)
     const toggleButton = document.getElementById('theme-toggle');
     const body = document.body;
 
@@ -17,13 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Initial load for the Toolkit
-    if (document.getElementById('team-select')) {
-        loadRoster();
-    }
+    // Initialize Status
+    updateSystemStatus("System Initializing... Awaiting Franchise Data.");
 });
 
-// 2. SCROLL LOGIC FOR STICKY HEADER
+// 2. STICKY HEADER LOGIC (Preserved from your original)
 window.addEventListener('scroll', () => {
     const header = document.querySelector('.main-header');
     if (window.scrollY > 50) {
@@ -33,19 +35,34 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// 3. GM TOOLKIT: DATA INJECTION ENGINE
-function loadRoster() {
-    const teamSelect = document.getElementById('team-select');
-    const rosterDisplay = document.getElementById('roster-display');
-    const capAmount = document.getElementById('cap-amount');
+// 3. SYSTEM STATUS BUBBLE LOGIC
+function updateSystemStatus(message) {
+    const statusText = document.getElementById('system-status');
+    if (statusText) {
+        statusText.innerText = message;
+    }
+}
+
+// 4. WAR ROOM: DUAL ROSTER ENGINE
+function loadRoster(side) {
+    const selectId = side === 'A' ? 'team-a-select' : 'team-b-select';
+    const displayId = side === 'A' ? 'roster-a' : 'roster-b';
+    const capId = side === 'A' ? 'cap-a' : 'cap-b';
+
+    const teamSelect = document.getElementById(selectId);
+    const rosterDisplay = document.getElementById(displayId);
+    const capAmount = document.getElementById(capId);
     
     if (!teamSelect || !rosterDisplay) return;
 
     const selectedTeamId = teamSelect.value;
     const teamData = nhlData.teams.find(t => t.id === selectedTeamId);
 
+    // Update Status Bubble when teams are selected
+    updateSystemStatus(`Franchise ${side} Loaded. Accessing Scouting Reports...`);
+
     if (!teamData || teamData.roster.length === 0) {
-        rosterDisplay.innerHTML = '<p style="opacity:0.5; padding:20px;">Scouting report in progress for this franchise...</p>';
+        rosterDisplay.innerHTML = '<p style="opacity:0.5; padding:20px;">Scouting report in progress...</p>';
         capAmount.innerText = '$---';
         return;
     }
@@ -59,108 +76,65 @@ function loadRoster() {
         card.innerHTML = `
             <div>
                 <strong>${player.name}</strong> (${player.pos})
-                <div style="font-size: 0.8rem; opacity: 0.7;">Salary: $${player.salary.toLocaleString()}</div>
+                <div style="font-size: 0.75rem; opacity: 0.7;">$${player.salary.toLocaleString()}</div>
             </div>
-            <div class="stat-value">${player.points} PTS</div>
+            <button class="add-btn" onclick="selectAsset('${side}', '${player.name.replace(/'/g, "\\'")}')">+</button>
         `;
         rosterDisplay.appendChild(card);
     });
 }
 
-// 4. GM TOOLKIT: SEARCH & TRADE LOGIC
-function searchPlayers() {
-    const searchInput = document.getElementById('player-search');
-    const resultsContainer = document.getElementById('search-results');
-    
-    if (!searchInput || !resultsContainer) return;
+// 5. SELECTION LOGIC
+function selectAsset(side, playerName) {
+    const selectId = side === 'A' ? 'team-a-select' : 'team-b-select';
+    const teamId = document.getElementById(selectId).value;
+    const team = nhlData.teams.find(t => t.id === teamId);
+    const player = team.roster.find(p => p.name === playerName);
 
-    const query = searchInput.value.toLowerCase().trim();
-    resultsContainer.innerHTML = '';
-
-    // Only search if the user has typed at least 2 characters
-    if (query.length < 2) return;
-
-    // Search the globalPool by name OR team abbreviation
-    const filtered = nhlData.globalPool.filter(player => 
-        player.name.toLowerCase().includes(query) || 
-        player.team.toLowerCase().includes(query)
-    );
-
-    if (filtered.length === 0) {
-        resultsContainer.innerHTML = '<p style="padding:10px; opacity:0.5;">No players found.</p>';
-        return;
+    if (side === 'A') {
+        assetA = player;
+        document.querySelector('#slot-a .slot-content').innerHTML = `<strong>${assetA.name}</strong><br><small>${assetA.points} PTS</small>`;
+    } else {
+        assetB = player;
+        document.querySelector('#slot-b .slot-content').innerHTML = `<strong>${assetB.name}</strong><br><small>${assetB.points} PTS</small>`;
     }
-
-    filtered.forEach(player => {
-        const resultCard = document.createElement('div');
-        resultCard.className = 'player-card';
-        resultCard.innerHTML = `
-            <div>
-                <strong>${player.name}</strong> [${player.team}]
-                <div style="font-size: 0.8rem; opacity: 0.7;">$${player.salary.toLocaleString()} | ${player.points} PTS</div>
-            </div>
-            <button class="add-btn" onclick="prepareTrade('${player.name.replace(/'/g, "\\'")}')">+</button>
-        `;
-        resultsContainer.appendChild(resultCard);
-    });
+    
+    updateSystemStatus("Assets identified. Ready for War Room analysis.");
 }
 
-// Global variable to hold target
-let selectedTradeTarget = null;
-
-function prepareTrade(playerName) {
-    selectedTradeTarget = nhlData.globalPool.find(p => p.name === playerName);
-    const aiStatus = document.getElementById('ai-status');
-    aiStatus.innerHTML = `
-        <p><strong>Trade Target Identified:</strong> ${selectedTradeTarget.name}</p>
-        <p style="font-size:0.8rem;">Click 'Analyze Scenario' to run AI simulation.</p>
-    `;
-}
-
-// GM TOOLKIT: AI STRATEGIC VERDICT ENGINE
+// 6. IMPACT VERDICT ENGINE
 const analyzeBtn = document.getElementById('execute-trade');
 if (analyzeBtn) {
     analyzeBtn.addEventListener('click', () => {
-        if (!selectedTradeTarget) {
-            alert("Select a trade target from the scouting report first.");
+        if (!assetA || !assetB) {
+            alert("Select players from both Franchise A and Franchise B to analyze.");
             return;
         }
 
-        const teamSelect = document.getElementById('team-select');
-        const teamData = nhlData.teams.find(t => t.id === teamSelect.value);
-        
-        // BI CALCULATION 1: Roster Efficiency (Points per $1M)
-        const efficiency = (selectedTradeTarget.points / (selectedTradeTarget.salary / 1000000)).toFixed(2);
-        
-        // BI CALCULATION 2: Cap Intake (% of total ceiling)
-        const capHitPercent = ((selectedTradeTarget.salary / nhlData.settings.salaryCap) * 100).toFixed(1);
-        
-        // BI CALCULATION 3: Win Probability (AI Projected Impact)
-        const wpImpact = (selectedTradeTarget.points * 0.12).toFixed(1);
-        
-        const remainingCap = teamData.capSpace - selectedTradeTarget.salary;
-        const color = remainingCap < 0 ? "#ff4d4d" : "#00d4ff";
+        const pointDelta = assetB.points - assetA.points;
+        const salaryDelta = assetB.salary - assetA.salary;
 
         const aiStatus = document.getElementById('ai-status');
         aiStatus.innerHTML = `
             <div class="ai-verdict-box" style="text-align:left;">
-                <p><strong>AI STRATEGIC VERDICT:</strong></p>
-                <ul style="list-style:none; padding:0; font-size:0.9rem; line-height:1.6;">
-                    <li>🎯 <strong>Efficiency:</strong> ${efficiency} PTS/$1M</li>
-                    <li>💰 <strong>Cap Intake:</strong> ${capHitPercent}%</li>
-                    <li>📈 <strong>Win Prob:</strong> +${wpImpact}%</li>
-                    <li>💸 <strong>Remaining Cap:</strong> <span style="color:${color}; font-weight:bold;">$${remainingCap.toLocaleString()}</span></li>
+                <p><strong>IMPACT VERDICT:</strong></p>
+                <ul style="list-style:none; padding:0; font-size:0.85rem; line-height:1.6;">
+                    <li>📊 <strong>Production Delta:</strong> ${pointDelta > 0 ? '+' : ''}${pointDelta} PTS</li>
+                    <li>💰 <strong>Salary Delta:</strong> $${salaryDelta.toLocaleString()}</li>
                 </ul>
-                <div style="border-top:1px solid var(--border); margin-top:10px; padding-top:10px; font-size:0.8rem;">
-                    ${remainingCap < 0 ? "⚠️ <strong>WARNING:</strong> Trade exceeds current financial budget." : "✅ <strong>OPTIMAL:</strong> Financial profile fits roster structure."}
+                <div style="border-top:1px solid var(--border); margin-top:10px; padding-top:10px; font-size:0.75rem;">
+                    <strong>AI NOTES:</strong> ${pointDelta > 0 ? "Strategic upgrade in production." : "Depth sacrifice for long-term cap relief."}
                 </div>
             </div>
         `;
+        updateSystemStatus("Simulation Complete. Verdict Rendered.");
     });
 }
 
-// Listen for Team Changes
-const teamDropdown = document.getElementById('team-select');
-if (teamDropdown) {
-    teamDropdown.addEventListener('change', loadRoster);
+// 7. RESET ROOM
+const resetBtn = document.getElementById('reset-trade');
+if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+        location.reload(); 
+    });
 }
