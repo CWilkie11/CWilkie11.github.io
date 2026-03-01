@@ -37,73 +37,96 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* 3. Hero Header */
-header {
+/* --- 3. Dynamic Dashboard Header --- */
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
     background: var(--header-gradient);
-    color: white;
-    padding: 60px 20px; 
-    margin-bottom: 40px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 30px 0; /* Large initial state */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.header-brand-container {
-    display: flex;
-    align-items: center;      
-    justify-content: center; /* Centered grouping for pro look */
-    width: 100%;
+/* --- 4. Frosted Glass State (Triggered on Scroll) --- */
+.main-header.scrolled {
+    padding: 10px 0; /* Condensed state */
+    background: rgba(15, 23, 42, 0.85); /* Translucent Pro-Blue */
+    backdrop-filter: blur(12px); /* Frosted Glass Effect */
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    border-bottom: 2px solid var(--accent);
+}
+
+.header-content-wrapper {
     max-width: 1200px;
     margin: 0 auto;
-    gap: 40px;                
+    padding: 0 40px;
 }
 
-.logo-wrapper {
-    flex-shrink: 0;           
+/* --- 5. Branding: Triple-Size Logo & Centered Title --- */
+.branding-row {
+    display: flex;
+    align-items: center; /* Vertically centers site name to logo */
+    gap: 0; /* Removes awkward spacing */
+    margin-bottom: 15px; 
+    transition: transform 0.4s ease;
 }
 
-.site-logo {
-    height: 380px !important; 
-    width: auto !important;
-    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.15));
-    transition: transform 0.3s ease;
+.main-header.scrolled .branding-row {
+    transform: scale(0.9); /* Subtle shrink on scroll */
+    margin-bottom: 5px;
 }
 
-.site-logo:hover {
-    transform: scale(1.02);
+.dynamic-logo {
+    height: 90px; /* Triple the 30px font size */
+    width: auto;
+    transition: height 0.4s ease;
+    filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.2));
 }
 
-.header-text {
-    text-align: left;         
+.main-header.scrolled .dynamic-logo {
+    height: 55px; /* Condensed logo height */
 }
 
-header h1 {
-    font-size: 3.2rem;        
-    margin-bottom: 8px;
-    letter-spacing: -1px;
+.dynamic-title {
+    font-size: 30px; /* Professional size, not "weak" */
+    font-weight: 800;
     color: #f8fafc;
-    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+    line-height: 1; /* Keeps text flush to logo */
 }
 
-header p {
-    color: #94a3b8;
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 0;                
-}
-
+/* --- 6. Tucked Navigation: Spaced & Clickable --- */
 .main-nav {
-    width: 100%;
-    margin-bottom: 40px;
-    text-align: center;
+    display: flex;
+    gap: 30px; /* Appropriate spacing for usability */
+    align-items: center;
+    padding-left: 5px; /* Aligns with branding start */
 }
 
 .main-nav a {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     color: var(--nav-link);
     text-decoration: none;
-    margin-right: 15px;
-    font-weight: 600;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.main-nav a:hover {
+    color: var(--accent);
+}
+
+/* Ensures the theme button stays tucked but accessible */
+#theme-toggle {
+    margin-left: auto; /* Pushes to the right of the nav bar */
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
 }
 
 /* 4. Main Content & Post Cards */
