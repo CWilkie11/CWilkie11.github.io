@@ -3,7 +3,7 @@ let assetA = null;
 let assetB = null;
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. THEME LOGIC (Preserved from your original)
+    // 1. THEME LOGIC
     const toggleButton = document.getElementById('theme-toggle');
     const body = document.body;
 
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSystemStatus("System Initializing... Awaiting Franchise Data.");
 });
 
-// 2. STICKY HEADER LOGIC (Preserved from your original)
+// 2. STICKY HEADER LOGIC
 window.addEventListener('scroll', () => {
     const header = document.querySelector('.main-header');
     if (window.scrollY > 50) {
@@ -45,31 +45,37 @@ function updateSystemStatus(message) {
 
 // 4. WAR ROOM: DUAL ROSTER ENGINE
 function loadRoster(side) {
+    // Identify IDs based on the side (A or B)
     const selectId = side === 'A' ? 'team-a-select' : 'team-b-select';
     const displayId = side === 'A' ? 'roster-a' : 'roster-b';
     const capId = side === 'A' ? 'cap-a' : 'cap-b';
+    const nameHeadingId = side === 'A' ? 'team-a-name' : 'team-b-name';
 
     const teamSelect = document.getElementById(selectId);
     const rosterDisplay = document.getElementById(displayId);
     const capAmount = document.getElementById(capId);
+    const teamHeading = document.getElementById(nameHeadingId);
     
     if (!teamSelect || !rosterDisplay) return;
 
     const selectedTeamId = teamSelect.value;
     const teamData = nhlData.teams.find(t => t.id === selectedTeamId);
 
-    // Update Status Bubble when teams are selected
-    updateSystemStatus(`Franchise ${side} Loaded. Accessing Scouting Reports...`);
+    if (!teamData) return;
 
-    if (!teamData || teamData.roster.length === 0) {
-        rosterDisplay.innerHTML = '<p style="opacity:0.5; padding:20px;">Scouting report in progress...</p>';
-        capAmount.innerText = '$---';
-        return;
+    // PROFESSIONAL TWEAK: Replace "Franchise" text with the official team name
+    if (teamHeading) {
+        teamHeading.innerText = teamData.name;
     }
 
+    // Update Status Bubble
+    updateSystemStatus(`Franchise ${teamData.name} Loaded. Accessing Scouting Reports...`);
+
+    // Update Cap and Clear old roster
     capAmount.innerText = `$${teamData.capSpace.toLocaleString()}`;
     rosterDisplay.innerHTML = '';
     
+    // Inject the players from the database
     teamData.roster.forEach(player => {
         const card = document.createElement('div');
         card.className = 'player-card';
@@ -84,7 +90,7 @@ function loadRoster(side) {
     });
 }
 
-// 5. SELECTION LOGIC
+// 5. SELECTION LOGIC (Moves players to the Impact Verdict Column)
 function selectAsset(side, playerName) {
     const selectId = side === 'A' ? 'team-a-select' : 'team-b-select';
     const teamId = document.getElementById(selectId).value;
@@ -93,10 +99,16 @@ function selectAsset(side, playerName) {
 
     if (side === 'A') {
         assetA = player;
-        document.querySelector('#slot-a .slot-content').innerHTML = `<strong>${assetA.name}</strong><br><small>${assetA.points} PTS</small>`;
+        document.querySelector('#slot-a .slot-content').innerHTML = `
+            <div style="color: #00d4ff; font-weight: bold;">${assetA.name}</div>
+            <div style="font-size: 0.8rem;">${assetA.points} PTS</div>
+        `;
     } else {
         assetB = player;
-        document.querySelector('#slot-b .slot-content').innerHTML = `<strong>${assetB.name}</strong><br><small>${assetB.points} PTS</small>`;
+        document.querySelector('#slot-b .slot-content').innerHTML = `
+            <div style="color: #00d4ff; font-weight: bold;">${assetB.name}</div>
+            <div style="font-size: 0.8rem;">${assetB.points} PTS</div>
+        `;
     }
     
     updateSystemStatus("Assets identified. Ready for War Room analysis.");
@@ -107,7 +119,7 @@ const analyzeBtn = document.getElementById('execute-trade');
 if (analyzeBtn) {
     analyzeBtn.addEventListener('click', () => {
         if (!assetA || !assetB) {
-            alert("Select players from both Franchise A and Franchise B to analyze.");
+            alert("Select assets from both franchises to simulate impact.");
             return;
         }
 
@@ -122,7 +134,7 @@ if (analyzeBtn) {
                     <li>📊 <strong>Production Delta:</strong> ${pointDelta > 0 ? '+' : ''}${pointDelta} PTS</li>
                     <li>💰 <strong>Salary Delta:</strong> $${salaryDelta.toLocaleString()}</li>
                 </ul>
-                <div style="border-top:1px solid var(--border); margin-top:10px; padding-top:10px; font-size:0.75rem;">
+                <div style="border-top:1px solid #334155; margin-top:10px; padding-top:10px; font-size:0.75rem;">
                     <strong>AI NOTES:</strong> ${pointDelta > 0 ? "Strategic upgrade in production." : "Depth sacrifice for long-term cap relief."}
                 </div>
             </div>
