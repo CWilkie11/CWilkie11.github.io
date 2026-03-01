@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>War Room | HyperDrive AI</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body class="dark-mode">
 
@@ -30,73 +31,121 @@
         <p>A specialized Business Intelligence environment for simulating inter-franchise asset exchange and financial risk.</p>
         
         <div class="perspective-box">
-            <p><strong>Status:</strong> <span id="system-status">System Initializing... Awaiting Player Data.</span></p>
+            <p><strong>Status:</strong> <span id="system-status">System Online... Awaiting Franchise Data.</span></p>
         </div>
 
-       <div class="toolkit-grid">
-    <div class="toolkit-panel">
-        <div class="panel-header">
-            <h3 id="team-a-name" class="team-heading">Franchise A</h3>
-            <select id="team-a-select" class="gm-input" onchange="loadRoster('A')">
-                <option value="" disabled selected>Select Franchise</option>
-                <option value="ANA">Anaheim Ducks</option>
-                <option value="CHI">Chicago Blackhawks</option>
-                <option value="EDM">Edmonton Oilers</option>
-                <option value="TOR">Toronto Maple Leafs</option>
-                <option value="VGK">Vegas Golden Knights</option>
-            </select>
-        </div>
-        <div id="roster-a" class="player-list"></div>
-        <div class="cap-tracker">
-            <span>Cap Space:</span>
-            <span id="cap-a" class="stat-value">$---</span>
-        </div>
-    </div>
+        <div class="toolkit-grid">
+            <div class="toolkit-panel">
+                <div class="panel-header">
+                    <h3 id="team-a-name" class="team-heading">Franchise A</h3>
+                    <select id="team-a-select" class="gm-input" onchange="loadRoster('A')">
+                        <option value="" disabled selected>Select Franchise</option>
+                        <option value="ANA">Anaheim Ducks</option>
+                        <option value="BOS">Boston Bruins</option>
+                        <option value="BUF">Buffalo Sabres</option>
+                        <option value="CAR">Carolina Hurricanes</option>
+                        <option value="CHI">Chicago Blackhawks</option>
+                        <option value="COL">Colorado Avalanche</option>
+                        <option value="CBJ">Columbus Blue Jackets</option>
+                        <option value="DAL">Dallas Stars</option>
+                        <option value="DET">Detroit Red Wings</option>
+                        <option value="EDM">Edmonton Oilers</option>
+                        <option value="FLA">Florida Panthers</option>
+                        <option value="LAK">Los Angeles Kings</option>
+                        <option value="MIN">Minnesota Wild</option>
+                        <option value="MTL">Montreal Canadiens</option>
+                        <option value="NSH">Nashville Predators</option>
+                        <option value="NJD">New Jersey Devils</option>
+                        <option value="NYI">New York Islanders</option>
+                        <option value="NYR">New York Rangers</option>
+                        <option value="OTT">Ottawa Senators</option>
+                        <option value="PHI">Philadelphia Flyers</option>
+                        <option value="PIT">Pittsburgh Penguins</option>
+                        <option value="SJS">San Jose Sharks</option>
+                        <option value="SEA">Seattle Kraken</option>
+                        <option value="STL">St. Louis Blues</option>
+                        <option value="TBL">Tampa Bay Lightning</option>
+                        <option value="TOR">Toronto Maple Leafs</option>
+                        <option value="UTA">Utah Mammoth</option>
+                        <option value="VAN">Vancouver Canucks</option>
+                        <option value="VGK">Vegas Golden Knights</option>
+                        <option value="WSH">Washington Capitals</option>
+                        <option value="WPG">Winnipeg Jets</option>
+                    </select>
+                </div>
+                <div id="roster-a" class="player-list"></div>
+                <div class="cap-tracker">
+                    <span>Cap Space:</span>
+                    <span id="cap-a" class="stat-value">$---</span>
+                </div>
+            </div>
 
-    <div class="toolkit-panel">
-        <div class="panel-header">
-            <h3 id="team-b-name" class="team-heading">Franchise B</h3>
-            <select id="team-b-select" class="gm-input" onchange="loadRoster('B')">
-                <option value="" disabled selected>Select Franchise</option>
-                <option value="ANA">Anaheim Ducks</option>
-                <option value="CHI">Chicago Blackhawks</option>
-                <option value="EDM">Edmonton Oilers</option>
-                <option value="TOR">Toronto Maple Leafs</option>
-                <option value="VGK">Vegas Golden Knights</option>
-            </select>
-        </div>
-        <div id="roster-b" class="player-list"></div>
-        <div class="cap-tracker">
-            <span>Cap Space:</span>
-            <span id="cap-b" class="stat-value">$---</span>
-        </div>
-    </div>
-</div>
+            <div class="toolkit-panel analytics-center">
+                <h3>Impact Verdict</h3>
+                
+                <div class="war-room-center">
+                    <div class="trade-slot" id="slot-a">
+                        <small>FROM A</small>
+                        <div class="slot-content">-- Empty --</div>
+                    </div>
+                    
+                    <div class="vs-divider">VS</div>
+                    
+                    <div class="trade-slot" id="slot-b">
+                        <small>FROM B</small>
+                        <div class="slot-content">-- Empty --</div>
+                    </div>
+                </div>
 
                 <div class="perspective-box" id="ai-status">
                     <p>Select assets from both franchises to simulate impact.</p>
                 </div>
-                <button id="execute-trade" class="trade-btn">Analyze Scenario</button>
+                
+                <button id="execute-trade" class="trade-btn">Analyze Trade</button>
                 <button id="reset-trade" class="trade-btn" style="background:#334155; margin-top:5px;">Reset War Room</button>
             </div>
 
             <div class="toolkit-panel">
                 <div class="panel-header">
-                    <h3>Franchise B</h3>
+                    <h3 id="team-b-name" class="team-heading">Franchise B</h3>
                     <select id="team-b-select" class="gm-input" onchange="loadRoster('B')">
-                        <option value="" disabled selected>Select Team</option>
+                        <option value="" disabled selected>Select Franchise</option>
                         <option value="ANA">Anaheim Ducks</option>
+                        <option value="BOS">Boston Bruins</option>
+                        <option value="BUF">Buffalo Sabres</option>
+                        <option value="CAR">Carolina Hurricanes</option>
                         <option value="CHI">Chicago Blackhawks</option>
                         <option value="COL">Colorado Avalanche</option>
+                        <option value="CBJ">Columbus Blue Jackets</option>
+                        <option value="DAL">Dallas Stars</option>
+                        <option value="DET">Detroit Red Wings</option>
                         <option value="EDM">Edmonton Oilers</option>
+                        <option value="FLA">Florida Panthers</option>
+                        <option value="LAK">Los Angeles Kings</option>
+                        <option value="MIN">Minnesota Wild</option>
+                        <option value="MTL">Montreal Canadiens</option>
+                        <option value="NSH">Nashville Predators</option>
+                        <option value="NJD">New Jersey Devils</option>
+                        <option value="NYI">New York Islanders</option>
+                        <option value="NYR">New York Rangers</option>
+                        <option value="OTT">Ottawa Senators</option>
+                        <option value="PHI">Philadelphia Flyers</option>
+                        <option value="PIT">Pittsburgh Penguins</option>
+                        <option value="SJS">San Jose Sharks</option>
+                        <option value="SEA">Seattle Kraken</option>
+                        <option value="STL">St. Louis Blues</option>
+                        <option value="TBL">Tampa Bay Lightning</option>
                         <option value="TOR">Toronto Maple Leafs</option>
-                        <option value="VGK">Vegas Golden Knights</option>
                         <option value="UTA">Utah Mammoth</option>
-                        </select>
+                        <option value="VAN">Vancouver Canucks</option>
+                        <option value="VGK">Vegas Golden Knights</option>
+                        <option value="WSH">Washington Capitals</option>
+                        <option value="WPG">Winnipeg Jets</option>
+                    </select>
                 </div>
                 <div id="roster-b" class="player-list"></div>
                 <div class="cap-tracker">
-                    <span>Cap:</span>
+                    <span>Cap Space:</span>
                     <span id="cap-b" class="stat-value">$---</span>
                 </div>
             </div>
