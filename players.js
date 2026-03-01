@@ -1,88 +1,142 @@
-// GM Toolkit: 2025-26 Comprehensive 32-Team League Database
 const nhlData = {
-    settings: { season: "2025-26", salaryCap: 95500000 },
-    teams: [
-        { name: "Anaheim Ducks", id: "ANA", capSpace: 10000000, roster: [
-            { name: "Cutter Gauthier", pos: "L", salary: 6000000, points: 50, fow: 45.4 },
-            { name: "Leo Carlsson", pos: "C", salary: 5800000, points: 48, fow: 45.7 }
-        ]},
-        { name: "Boston Bruins", id: "BOS", capSpace: 10000000, roster: [
-            { name: "David Pastrnak", pos: "R", salary: 11250000, points: 72, fow: 20.0 },
-            { name: "Morgan Geekie", pos: "C", salary: 6500000, points: 55, fow: 45.8 }
-        ]},
-        { name: "Chicago Blackhawks", id: "CHI", capSpace: 10000000, roster: [
-            { name: "Connor Bedard", pos: "C", salary: 950000, points: 55, fow: 46.2 },
-            { name: "Tyler Bertuzzi", pos: "L", salary: 5400000, points: 44, fow: 48.4 }
-        ]},
-        { name: "Edmonton Oilers", id: "EDM", capSpace: 10000000, roster: [
-            { name: "Connor McDavid", pos: "C", salary: 12500000, points: 103, fow: 47.5 },
-            { name: "Leon Draisaitl", pos: "C", salary: 14000000, points: 85, fow: 56.6 },
-            { name: "Evan Bouchard", pos: "D", salary: 7900000, points: 69, fow: 0 }
-        ]},
-        { name: "Toronto Maple Leafs", id: "TOR", capSpace: 10000000, roster: [
-            { name: "William Nylander", pos: "R", salary: 11500000, points: 55, fow: 40.4 },
-            { name: "Auston Matthews", pos: "C", salary: 13250000, points: 51, fow: 59.3 },
-            { name: "Matthew Knies", pos: "L", salary: 5800000, points: 48, fow: 0 }
-        ]}
-        // Note: The logic in script.js now recognizes all 32 franchises.
-    ],
-    // This globalPool contains the full list of 100 players from your Top 100 file
-    globalPool: [
-        { name: "Connor McDavid", team: "EDM", pos: "C", salary: 12500000, points: 103, fow: 47.5 },
-        { name: "Nathan MacKinnon", team: "COL", pos: "C", salary: 12600000, points: 97, fow: 51.4 },
-        { name: "Nikita Kucherov", team: "TBL", pos: "R", salary: 9500000, points: 95, fow: 0 },
-        { name: "Macklin Celebrini", team: "SJS", pos: "C", salary: 9200000, points: 82, fow: 49.7 },
-        { name: "Kirill Kaprizov", team: "MIN", pos: "L", salary: 9000000, points: 73, fow: 0 }
-        /* Your search engine will automatically pull from all 100 players */
-    ]
-};
-
-const nhlData = {
-    settings: { 
-        season: "2025-26", 
-        upperLimit: 95500000, // Official 2026 Cap Ceiling
-        lowerLimit: 70600000  // Official 2026 Cap Floor
+    "settings": {
+        "season": "2025-26",
+        "salaryCap": 95500000
     },
-    teams: [
-        { name: "Anaheim Ducks", id: "ANA", capSpace: 12611311, roster: [] },
-        { name: "Boston Bruins", id: "BOS", capSpace: 8500000, roster: [] },
-        { name: "Buffalo Sabres", id: "BUF", capSpace: 11000000, roster: [] },
-        { name: "Calgary Flames", id: "CGY", capSpace: 14500000, roster: [] },
-        { name: "Carolina Hurricanes", id: "CAR", capSpace: 7200000, roster: [] },
-        { name: "Chicago Blackhawks", id: "CHI", capSpace: 13212024, roster: [
-            { name: "Connor Bedard", pos: "C", salary: 950000, points: 55, fow: 46.2 }
-        ]},
-        { name: "Colorado Avalanche", id: "COL", capSpace: 5400000, roster: [
-            { name: "Nathan MacKinnon", pos: "C", salary: 12600000, points: 97, fow: 51.4 }
-        ]},
-        { name: "Columbus Blue Jackets", id: "CBJ", capSpace: 18000000, roster: [] },
-        { name: "Dallas Stars", id: "DAL", capSpace: 4200000, roster: [] },
-        { name: "Detroit Red Wings", id: "DET", capSpace: 9100000, roster: [] },
-        { name: "Edmonton Oilers", id: "EDM", capSpace: 1200000, roster: [
-            { name: "Connor McDavid", pos: "C", salary: 12500000, points: 103, fow: 47.5 }
-        ]},
-        { name: "Florida Panthers", id: "FLA", capSpace: 3100000, roster: [] },
-        { name: "Los Angeles Kings", id: "LAK", capSpace: 5800000, roster: [] },
-        { name: "Minnesota Wild", id: "MIN", capSpace: 2400000, roster: [] },
-        { name: "Montreal Canadiens", id: "MTL", capSpace: 10500000, roster: [] },
-        { name: "Nashville Predators", id: "NSH", capSpace: 6700000, roster: [] },
-        { name: "New Jersey Devils", id: "NJD", capSpace: 8900000, roster: [] },
-        { name: "New York Islanders", id: "NYI", capSpace: 4500000, roster: [] },
-        { name: "New York Rangers", id: "NYR", capSpace: 12690863, roster: [] },
-        { name: "Ottawa Senators", id: "OTT", capSpace: 9400000, roster: [] },
-        { name: "Philadelphia Flyers", id: "PHI", capSpace: 5200000, roster: [] },
-        { name: "Pittsburgh Penguins", id: "PIT", capSpace: 3800000, roster: [] },
-        { name: "San Jose Sharks", id: "SJS", capSpace: 19789999, roster: [] },
-        { name: "Seattle Kraken", id: "SEA", capSpace: 11200000, roster: [] },
-        { name: "St. Louis Blues", id: "STL", capSpace: 7100000, roster: [] },
-        { name: "Tampa Bay Lightning", id: "TBL", capSpace: 1500000, roster: [] },
-        { name: "Toronto Maple Leafs", id: "TOR", capSpace: 9906498, roster: [
-            { name: "Auston Matthews", pos: "C", salary: 13250000, points: 51, fow: 59.3 }
-        ]},
-        { name: "Utah Mammoth", id: "UTA", capSpace: 15400000, roster: [] },
-        { name: "Vancouver Canucks", id: "VAN", capSpace: 4100000, roster: [] },
-        { name: "Vegas Golden Knights", id: "VGK", capSpace: 2900000, roster: [] },
-        { name: "Washington Capitals", id: "WAS", capSpace: 6100000, roster: [] },
-        { name: "Winnipeg Jets", id: "WPG", capSpace: 8200000, roster: [] }
+    "teams": [
+        { "name": "Anaheim Ducks", "id": "ANA", "capSpace": 12000000, "roster": [{ "name": "Cutter Gauthier", "pos": "L", "salary": 6250000, "points": 50, "fow": 45.4 }, { "name": "Leo Carlsson", "pos": "C", "salary": 6040000, "points": 48, "fow": 45.7 }, { "name": "Beckett Sennecke", "pos": "R", "salary": 6040000, "points": 48, "fow": 50.0 }, { "name": "Troy Terry", "pos": "R", "salary": 5725000, "points": 45, "fow": 50.0 }] },
+        { "name": "Boston Bruins", "id": "BOS", "capSpace": 5000000, "roster": [{ "name": "David Pastrnak", "pos": "R", "salary": 11250000, "points": 72, "fow": 20.0 }, { "name": "Morgan Geekie", "pos": "C", "salary": 6775000, "points": 55, "fow": 45.8 }] },
+        { "name": "Buffalo Sabres", "id": "BUF", "capSpace": 18000000, "roster": [{ "name": "Tage Thompson", "pos": "C", "salary": 7142857, "points": 63, "fow": 45.6 }, { "name": "Alex Tuch", "pos": "R", "salary": 6355000, "points": 51, "fow": 43.8 }, { "name": "Rasmus Dahlin", "pos": "D", "salary": 6355000, "points": 51, "fow": 0.0 }, { "name": "Ryan McLeod", "pos": "C", "salary": 5410000, "points": 42, "fow": 46.6 }] },
+        { "name": "Calgary Flames", "id": "CGY", "capSpace": 14000000, "roster": [] },
+        { "name": "Carolina Hurricanes", "id": "CAR", "capSpace": 9000000, "roster": [{ "name": "Sebastian Aho", "pos": "C", "salary": 9750000, "points": 59, "fow": 50.7 }, { "name": "Andrei Svechnikov", "pos": "R", "salary": 6355000, "points": 51, "fow": 50.0 }, { "name": "Seth Jarvis", "pos": "C", "salary": 5830000, "points": 46, "fow": 41.5 }, { "name": "Nikolaj Ehlers", "pos": "L", "salary": 5620000, "points": 44, "fow": 36.7 }] },
+        { "name": "Chicago Blackhawks", "id": "CHI", "capSpace": 25000000, "roster": [{ "name": "Connor Bedard", "pos": "C", "salary": 950000, "points": 55, "fow": 46.2 }, { "name": "Tyler Bertuzzi", "pos": "L", "salary": 5620000, "points": 44, "fow": 48.4 }] },
+        { "name": "Colorado Avalanche", "id": "COL", "capSpace": 4000000, "roster": [{ "name": "Nathan MacKinnon", "pos": "C", "salary": 12600000, "points": 97, "fow": 51.4 }, { "name": "Martin Necas", "pos": "C", "salary": 8140000, "points": 68, "fow": 45.0 }, { "name": "Cale Makar", "pos": "D", "salary": 9000000, "points": 60, "fow": 0.0 }, { "name": "Brock Nelson", "pos": "C", "salary": 6250000, "points": 50, "fow": 50.0 }, { "name": "Artturi Lehkonen", "pos": "L", "salary": 5410000, "points": 42, "fow": 16.7 }] },
+        { "name": "Columbus Blue Jackets", "id": "CBJ", "capSpace": 21000000, "roster": [{ "name": "Zach Werenski", "pos": "D", "salary": 9583333, "points": 65, "fow": 0.0 }, { "name": "Kirill Marchenko", "pos": "R", "salary": 5935000, "points": 47, "fow": 42.9 }, { "name": "Charlie Coyle", "pos": "C", "salary": 5515000, "points": 43, "fow": 50.3 }] },
+        { "name": "Dallas Stars", "id": "DAL", "capSpace": 3000000, "roster": [{ "name": "Mikko Rantanen", "pos": "R", "salary": 8245000, "points": 69, "fow": 50.0 }, { "name": "Jason Robertson", "pos": "L", "salary": 7750000, "points": 68, "fow": 0.0 }, { "name": "Wyatt Johnston", "pos": "C", "salary": 7615000, "points": 63, "fow": 46.8 }, { "name": "Miro Heiskanen", "pos": "D", "salary": 6040000, "points": 48, "fow": 0.0 }, { "name": "Roope Hintz", "pos": "C", "salary": 5620000, "points": 44, "fow": 59.2 }] },
+        { "name": "Detroit Red Wings", "id": "DET", "capSpace": 11000000, "roster": [{ "name": "Lucas Raymond", "pos": "L", "salary": 7510000, "points": 62, "fow": 100.0 }, { "name": "Alex DeBrincat", "pos": "R", "salary": 7090000, "points": 58, "fow": 41.5 }, { "name": "Dylan Larkin", "pos": "C", "salary": 8700000, "points": 54, "fow": 52.3 }] },
+        { "name": "Edmonton Oilers", "id": "EDM", "capSpace": 1200000, "roster": [{ "name": "Connor McDavid", "pos": "C", "salary": 12500000, "points": 103, "fow": 47.5 }, { "name": "Leon Draisaitl", "pos": "C", "salary": 14000000, "points": 85, "fow": 56.6 }, { "name": "Evan Bouchard", "pos": "D", "salary": 8245000, "points": 69, "fow": 0.0 }, { "name": "Ryan Nugent-Hopkins", "pos": "C", "salary": 5935000, "points": 47, "fow": 45.8 }] },
+        { "name": "Florida Panthers", "id": "FLA", "capSpace": 2000000, "roster": [{ "name": "Sam Reinhart", "pos": "C", "salary": 8625000, "points": 56, "fow": 38.9 }, { "name": "Brad Marchand", "pos": "L", "salary": 6565000, "points": 53, "fow": 12.5 }, { "name": "Sam Bennett", "pos": "C", "salary": 5725000, "points": 45, "fow": 48.0 }, { "name": "Carter Verhaeghe", "pos": "C", "salary": 5515000, "points": 43, "fow": 38.5 }, { "name": "Anton Lundell", "pos": "C", "salary": 5410000, "points": 42, "fow": 52.3 }] },
+        { "name": "Los Angeles Kings", "id": "LAK", "capSpace": 6000000, "roster": [{ "name": "Adrian Kempe", "pos": "R", "salary": 6145000, "points": 49, "fow": 36.2 }] },
+        { "name": "Minnesota Wild", "id": "MIN", "capSpace": 7000000, "roster": [{ "name": "Kirill Kaprizov", "pos": "L", "salary": 9000000, "points": 73, "fow": 0.0 }, { "name": "Matt Boldy", "pos": "L", "salary": 8140000, "points": 68, "fow": 46.9 }, { "name": "Joel Eriksson Ek", "pos": "C", "salary": 5410000, "points": 42, "fow": 48.6 }] },
+        { "name": "Montreal Canadiens", "id": "MTL", "capSpace": 10000000, "roster": [{ "name": "Nick Suzuki", "pos": "C", "salary": 7875000, "points": 68, "fow": 49.3 }, { "name": "Cole Caufield", "pos": "R", "salary": 7300000, "points": 60, "fow": 37.5 }, { "name": "Lane Hutson", "pos": "D", "salary": 7195000, "points": 59, "fow": 0.0 }, { "name": "Ivan Demidov", "pos": "R", "salary": 5935000, "points": 47, "fow": 0.0 }, { "name": "Juraj Slafkovský", "pos": "L", "salary": 5830000, "points": 46, "fow": 34.7 }] },
+        { "name": "Nashville Predators", "id": "NSH", "capSpace": 8000000, "roster": [{ "name": "Ryan O'Reilly", "pos": "C", "salary": 6985000, "points": 57, "fow": 55.3 }, { "name": "Filip Forsberg", "pos": "L", "salary": 8500000, "points": 48, "fow": 35.7 }, { "name": "Steven Stamkos", "pos": "C", "salary": 8000000, "points": 46, "fow": 55.6 }, { "name": "Luke Evangelista", "pos": "R", "salary": 5620000, "points": 44, "fow": 0.0 }] },
+        { "name": "New Jersey Devils", "id": "NJD", "capSpace": 13000000, "roster": [{ "name": "Nico Hischier", "pos": "C", "salary": 5515000, "points": 43, "fow": 54.9 }, { "name": "Jesper Bratt", "pos": "L", "salary": 5515000, "points": 43, "fow": 33.3 }] },
+        { "name": "New York Islanders", "id": "NYI", "capSpace": 4000000, "roster": [{ "name": "Mathew Barzal", "pos": "C", "salary": 6670000, "points": 54, "fow": 39.8 }, { "name": "Bo Horvat", "pos": "C", "salary": 5305000, "points": 41, "fow": 56.5 }] },
+        { "name": "New York Rangers", "id": "NYR", "capSpace": 1000000, "roster": [{ "name": "Artemi Panarin", "pos": "L", "salary": 11642857, "points": 60, "fow": 100.0 }, { "name": "Mika Zibanejad", "pos": "C", "salary": 8500000, "points": 53, "fow": 52.2 }] },
+        { "name": "Ottawa Senators", "id": "OTT", "capSpace": 12000000, "roster": [{ "name": "Tim Stützle", "pos": "C", "salary": 8350000, "points": 63, "fow": 53.3 }, { "name": "Drake Batherson", "pos": "R", "salary": 6355000, "points": 51, "fow": 47.4 }, { "name": "Jake Sanderson", "pos": "D", "salary": 6040000, "points": 48, "fow": 0.0 }, { "name": "Dylan Cozens", "pos": "C", "salary": 5830000, "points": 46, "fow": 53.5 }] },
+        { "name": "Philadelphia Flyers", "id": "PHI", "capSpace": 5000000, "roster": [{ "name": "Travis Konecny", "pos": "R", "salary": 6985000, "points": 57, "fow": 26.8 }, { "name": "Trevor Zegras", "pos": "C", "salary": 6250000, "points": 50, "fow": 33.7 }] },
+        { "name": "Pittsburgh Penguins", "id": "PIT", "capSpace": 3000000, "roster": [{ "name": "Sidney Crosby", "pos": "C", "salary": 8700000, "points": 59, "fow": 55.4 }, { "name": "Evgeni Malkin", "pos": "C", "salary": 6100000, "points": 46, "fow": 45.5 }, { "name": "Anthony Mantha", "pos": "R", "salary": 5620000, "points": 44, "fow": 22.2 }, { "name": "Bryan Rust", "pos": "R", "salary": 5305000, "points": 41, "fow": 0.0 }] },
+        { "name": "San Jose Sharks", "id": "SJS", "capSpace": 22000000, "roster": [{ "name": "Macklin Celebrini", "pos": "C", "salary": 9610000, "points": 82, "fow": 49.7 }] },
+        { "name": "Seattle Kraken", "id": "SEA", "capSpace": 10000000, "roster": [{ "name": "Jordan Eberle", "pos": "R", "salary": 5305000, "points": 41, "fow": 37.5 }] },
+        { "name": "St. Louis Blues", "id": "STL", "capSpace": 9000000, "roster": [] },
+        { "name": "Tampa Bay Lightning", "id": "TBL", "capSpace": 1500000, "roster": [{ "name": "Nikita Kucherov", "pos": "R", "salary": 9500000, "points": 95, "fow": 0.0 }, { "name": "Jake Guentzel", "pos": "C", "salary": 7615000, "points": 63, "fow": 46.4 }, { "name": "Brandon Hagel", "pos": "L", "salary": 6775000, "points": 55, "fow": 40.0 }, { "name": "Darren Raddysh", "pos": "D", "salary": 6670000, "points": 54, "fow": 0.0 }] },
+        { "name": "Toronto Maple Leafs", "id": "TOR", "capSpace": 5000000, "roster": [{ "name": "William Nylander", "pos": "R", "salary": 11500000, "points": 55, "fow": 40.4 }, { "name": "Auston Matthews", "pos": "C", "salary": 13250000, "points": 51, "fow": 59.3 }, { "name": "John Tavares", "pos": "C", "salary": 11000000, "points": 49, "fow": 58.3 }, { "name": "Matthew Knies", "pos": "L", "salary": 925000, "points": 48, "fow": 0.0 }] },
+        { "name": "Utah Mammoth", "id": "UTA", "capSpace": 15000000, "roster": [{ "name": "Clayton Keller", "pos": "R", "salary": 7150000, "points": 58, "fow": 41.4 }, { "name": "Nick Schmaltz", "pos": "C", "salary": 6775000, "points": 55, "fow": 46.3 }, { "name": "Dylan Guenther", "pos": "R", "salary": 6145000, "points": 49, "fow": 40.4 }] },
+        { "name": "Vancouver Canucks", "id": "VAN", "capSpace": 6000000, "roster": [{ "name": "Quinn Hughes", "pos": "D", "salary": 7850000, "points": 58, "fow": 0.0 }] },
+        { "name": "Vegas Golden Knights", "id": "VGK", "capSpace": 2000000, "roster": [{ "name": "Jack Eichel", "pos": "C", "salary": 10000000, "points": 68, "fow": 47.4 }, { "name": "Mark Stone", "pos": "R", "salary": 9500000, "points": 60, "fow": 27.3 }, { "name": "Mitch Marner", "pos": "R", "salary": 10903000, "points": 59, "fow": 38.7 }, { "name": "Tomas Hertl", "pos": "C", "salary": 8137500, "points": 51, "fow": 57.5 }, { "name": "Pavel Dorofeyev", "pos": "R", "salary": 5935000, "points": 47, "fow": 0.0 }, { "name": "Ivan Barbashev", "pos": "L", "salary": 5410000, "points": 42, "fow": 23.1 }] },
+        { "name": "Washington Capitals", "id": "WSH", "capSpace": 7000000, "roster": [{ "name": "Alex Ovechkin", "pos": "L", "salary": 6250000, "points": 50, "fow": 66.7 }, { "name": "Tom Wilson", "pos": "R", "salary": 6145000, "points": 49, "fow": 48.3 }, { "name": "Jakob Chychrun", "pos": "D", "salary": 6040000, "points": 48, "fow": 0.0 }, { "name": "Dylan Strome", "pos": "C", "salary": 6040000, "points": 48, "fow": 59.4 }, { "name": "John Carlson", "pos": "D", "salary": 5830000, "points": 46, "fow": 0.0 }, { "name": "Aliaksei Protas", "pos": "C", "salary": 5410000, "points": 42, "fow": 41.0 }] },
+        { "name": "Winnipeg Jets", "id": "WPG", "capSpace": 8000000, "roster": [{ "name": "Mark Scheifele", "pos": "C", "salary": 8500000, "points": 70, "fow": 45.9 }, { "name": "Kyle Connor", "pos": "L", "salary": 7142857, "points": 67, "fow": 0.0 }, { "name": "Gabriel Vilardi", "pos": "C", "salary": 6460000, "points": 52, "fow": 45.5 }, { "name": "Josh Morrissey", "pos": "D", "salary": 5410000, "points": 42, "fow": 0.0 }] }
+    ],
+    "globalPool": [
+        { "name": "Connor McDavid", "team": "EDM", "pos": "C", "salary": 12500000, "points": 103, "fow": 47.5 },
+        { "name": "Nathan MacKinnon", "team": "COL", "pos": "C", "salary": 12600000, "points": 97, "fow": 51.4 },
+        { "name": "Nikita Kucherov", "team": "TBL", "pos": "R", "salary": 9500000, "points": 95, "fow": 0.0 },
+        { "name": "Leon Draisaitl", "team": "EDM", "pos": "C", "salary": 14000000, "points": 85, "fow": 56.6 },
+        { "name": "Macklin Celebrini", "team": "SJS", "pos": "C", "salary": 9610000, "points": 82, "fow": 49.7 },
+        { "name": "Kirill Kaprizov", "team": "MIN", "pos": "L", "salary": 9000000, "points": 73, "fow": 0.0 },
+        { "name": "David Pastrnak", "team": "BOS", "pos": "R", "salary": 11250000, "points": 72, "fow": 20.0 },
+        { "name": "Mark Scheifele", "team": "WPG", "pos": "C", "salary": 8500000, "points": 70, "fow": 45.9 },
+        { "name": "Mikko Rantanen", "team": "DAL", "pos": "R", "salary": 8245000, "points": 69, "fow": 50.0 },
+        { "name": "Evan Bouchard", "team": "EDM", "pos": "D", "salary": 8245000, "points": 69, "fow": 0.0 },
+        { "name": "Matt Boldy", "team": "MIN", "pos": "L", "salary": 8140000, "points": 68, "fow": 46.9 },
+        { "name": "Jason Robertson", "team": "DAL", "pos": "L", "salary": 7750000, "points": 68, "fow": 0.0 },
+        { "name": "Martin Necas", "team": "COL", "pos": "C", "salary": 8140000, "points": 68, "fow": 45.0 },
+        { "name": "Jack Eichel", "team": "VGK", "pos": "C", "salary": 10000000, "points": 68, "fow": 47.4 },
+        { "name": "Nick Suzuki", "team": "MTL", "pos": "C", "salary": 7875000, "points": 68, "fow": 49.3 },
+        { "name": "Kyle Connor", "team": "WPG", "pos": "L", "salary": 7142857, "points": 67, "fow": 0.0 },
+        { "name": "Zach Werenski", "team": "CBJ", "pos": "D", "salary": 9583333, "points": 65, "fow": 0.0 },
+        { "name": "Tage Thompson", "team": "BUF", "pos": "C", "salary": 7142857, "points": 63, "fow": 45.6 },
+        { "name": "Wyatt Johnston", "team": "DAL", "pos": "C", "salary": 7615000, "points": 63, "fow": 46.8 },
+        { "name": "Tim Stützle", "team": "OTT", "pos": "C", "salary": 8350000, "points": 63, "fow": 53.3 },
+        { "name": "Jake Guentzel", "team": "TBL", "pos": "C", "salary": 7615000, "points": 63, "fow": 46.4 },
+        { "name": "Lucas Raymond", "team": "DET", "pos": "L", "salary": 7510000, "points": 62, "fow": 100.0 },
+        { "name": "Cole Caufield", "team": "MTL", "pos": "R", "salary": 7300000, "points": 60, "fow": 37.5 },
+        { "name": "Mark Stone", "team": "VGK", "pos": "R", "salary": 9500000, "points": 60, "fow": 27.3 },
+        { "name": "Artemi Panarin", "team": "NYR", "pos": "L", "salary": 11642857, "points": 60, "fow": 100.0 },
+        { "name": "Cale Makar", "team": "COL", "pos": "D", "salary": 9000000, "points": 60, "fow": 0.0 },
+        { "name": "Sidney Crosby", "team": "PIT", "pos": "C", "salary": 8700000, "points": 59, "fow": 55.4 },
+        { "name": "Sebastian Aho", "team": "CAR", "pos": "C", "salary": 9750000, "points": 59, "fow": 50.7 },
+        { "name": "Mitch Marner", "team": "VGK", "pos": "R", "salary": 10903000, "points": 59, "fow": 38.7 },
+        { "name": "Lane Hutson", "team": "MTL", "pos": "D", "salary": 7195000, "points": 59, "fow": 0.0 },
+        { "name": "Alex DeBrincat", "team": "DET", "pos": "R", "salary": 7090000, "points": 58, "fow": 41.5 },
+        { "name": "Clayton Keller", "team": "UTA", "pos": "R", "salary": 7150000, "points": 58, "fow": 41.4 },
+        { "name": "Quinn Hughes", "team": "VAN", "pos": "D", "salary": 7850000, "points": 58, "fow": 0.0 },
+        { "name": "Travis Konecny", "team": "PHI", "pos": "R", "salary": 6985000, "points": 57, "fow": 26.8 },
+        { "name": "Ryan O'Reilly", "team": "NSH", "pos": "C", "salary": 6985000, "points": 57, "fow": 55.3 },
+        { "name": "Sam Reinhart", "team": "FLA", "pos": "C", "salary": 8625000, "points": 56, "fow": 38.9 },
+        { "name": "Morgan Geekie", "team": "BOS", "pos": "C", "salary": 6775000, "points": 55, "fow": 45.8 },
+        { "name": "Brandon Hagel", "team": "TBL", "pos": "L", "salary": 6775000, "points": 55, "fow": 40.0 },
+        { "name": "Connor Bedard", "team": "CHI", "pos": "C", "salary": 950000, "points": 55, "fow": 46.2 },
+        { "name": "Nick Schmaltz", "team": "UTA", "pos": "C", "salary": 6775000, "points": 55, "fow": 46.3 },
+        { "name": "William Nylander", "team": "TOR", "pos": "R", "salary": 11500000, "points": 55, "fow": 40.4 },
+        { "name": "Dylan Larkin", "team": "DET", "pos": "C", "salary": 8700000, "points": 54, "fow": 52.3 },
+        { "name": "Darren Raddysh", "team": "TBL", "pos": "D", "salary": 6670000, "points": 54, "fow": 0.0 },
+        { "name": "Mathew Barzal", "team": "NYI", "pos": "C", "salary": 6670000, "points": 54, "fow": 39.8 },
+        { "name": "Brad Marchand", "team": "FLA", "pos": "L", "salary": 6565000, "points": 53, "fow": 12.5 },
+        { "name": "Mika Zibanejad", "team": "NYR", "pos": "C", "salary": 8500000, "points": 53, "fow": 52.2 },
+        { "name": "Gabriel Vilardi", "team": "WPG", "pos": "C", "salary": 6460000, "points": 52, "fow": 45.5 },
+        { "name": "Auston Matthews", "team": "TOR", "pos": "C", "salary": 13250000, "points": 51, "fow": 59.3 },
+        { "name": "Alex Tuch", "team": "BUF", "pos": "R", "salary": 6355000, "points": 51, "fow": 43.8 },
+        { "name": "Tomas Hertl", "team": "VGK", "pos": "C", "salary": 8137500, "points": 51, "fow": 57.5 },
+        { "name": "Drake Batherson", "team": "OTT", "pos": "R", "salary": 6355000, "points": 51, "fow": 47.4 },
+        { "name": "Andrei Svechnikov", "team": "CAR", "pos": "R", "salary": 6355000, "points": 51, "fow": 50.0 },
+        { "name": "Rasmus Dahlin", "team": "BUF", "pos": "D", "salary": 6355000, "points": 51, "fow": 0.0 },
+        { "name": "Brock Nelson", "team": "COL", "pos": "C", "salary": 6250000, "points": 50, "fow": 50.0 },
+        { "name": "Cutter Gauthier", "team": "ANA", "pos": "L", "salary": 6250000, "points": 50, "fow": 45.4 },
+        { "name": "Alex Ovechkin", "team": "WSH", "pos": "L", "salary": 6250000, "points": 50, "fow": 66.7 },
+        { "name": "Trevor Zegras", "team": "PHI", "pos": "C", "salary": 6250000, "points": 50, "fow": 33.7 },
+        { "name": "Dylan Guenther", "team": "UTA", "pos": "R", "salary": 6145000, "points": 49, "fow": 40.4 },
+        { "name": "Tom Wilson", "team": "WSH", "pos": "R", "salary": 6145000, "points": 49, "fow": 48.3 },
+        { "name": "John Tavares", "team": "TOR", "pos": "C", "salary": 11000000, "points": 49, "fow": 58.3 },
+        { "name": "Adrian Kempe", "team": "LAK", "pos": "R", "salary": 6145000, "points": 49, "fow": 36.2 },
+        { "name": "Filip Forsberg", "team": "NSH", "pos": "L", "salary": 8500000, "points": 48, "fow": 35.7 },
+        { "name": "Jakob Chychrun", "team": "WSH", "pos": "D", "salary": 6040000, "points": 48, "fow": 0.0 },
+        { "name": "Leo Carlsson", "team": "ANA", "pos": "C", "salary": 6040000, "points": 48, "fow": 45.7 },
+        { "name": "Beckett Sennecke", "team": "ANA", "pos": "R", "salary": 6040000, "points": 48, "fow": 50.0 },
+        { "name": "Dylan Strome", "team": "WSH", "pos": "C", "salary": 6040000, "points": 48, "fow": 59.4 },
+        { "name": "Matthew Knies", "team": "TOR", "pos": "L", "salary": 925000, "points": 48, "fow": 0.0 },
+        { "name": "Jake Sanderson", "team": "OTT", "pos": "D", "salary": 6040000, "points": 48, "fow": 0.0 },
+        { "name": "Miro Heiskanen", "team": "DAL", "pos": "D", "salary": 6040000, "points": 48, "fow": 0.0 },
+        { "name": "Pavel Dorofeyev", "team": "VGK", "pos": "R", "salary": 5935000, "points": 47, "fow": 0.0 },
+        { "name": "Kirill Marchenko", "team": "CBJ", "pos": "R", "salary": 5935000, "points": 47, "fow": 42.9 },
+        { "name": "Ryan Nugent-Hopkins", "team": "EDM", "pos": "C", "salary": 5935000, "points": 47, "fow": 45.8 },
+        { "name": "Ivan Demidov", "team": "MTL", "pos": "R", "salary": 5935000, "points": 47, "fow": 0.0 },
+        { "name": "Steven Stamkos", "team": "NSH", "pos": "C", "salary": 8000000, "points": 46, "fow": 55.6 },
+        { "name": "Seth Jarvis", "team": "CAR", "pos": "C", "salary": 5830000, "points": 46, "fow": 41.5 },
+        { "name": "Juraj Slafkovský", "team": "MTL", "pos": "L", "salary": 5830000, "points": 46, "fow": 34.7 },
+        { "name": "Dylan Cozens", "team": "OTT", "pos": "C", "salary": 5830000, "points": 46, "fow": 53.5 },
+        { "name": "Evgeni Malkin", "team": "PIT", "pos": "C", "salary": 6100000, "points": 46, "fow": 45.5 },
+        { "name": "John Carlson", "team": "WSH", "pos": "D", "salary": 5830000, "points": 46, "fow": 0.0 },
+        { "name": "Sam Bennett", "team": "FLA", "pos": "C", "salary": 5725000, "points": 45, "fow": 48.0 },
+        { "name": "Troy Terry", "team": "ANA", "pos": "R", "salary": 5725000, "points": 45, "fow": 50.0 },
+        { "name": "Tyler Bertuzzi", "team": "CHI", "pos": "L", "salary": 5620000, "points": 44, "fow": 48.4 },
+        { "name": "Anthony Mantha", "team": "PIT", "pos": "R", "salary": 5620000, "points": 44, "fow": 22.2 },
+        { "name": "Nikolaj Ehlers", "team": "CAR", "pos": "L", "salary": 5620000, "points": 44, "fow": 36.7 },
+        { "name": "Roope Hintz", "team": "DAL", "pos": "C", "salary": 5620000, "points": 44, "fow": 59.2 },
+        { "name": "Luke Evangelista", "team": "NSH", "pos": "R", "salary": 5620000, "points": 44, "fow": 0.0 },
+        { "name": "Nico Hischier", "team": "NJD", "pos": "C", "salary": 5515000, "points": 43, "fow": 54.9 },
+        { "name": "Carter Verhaeghe", "team": "FLA", "pos": "C", "salary": 5515000, "points": 43, "fow": 38.5 },
+        { "name": "Charlie Coyle", "team": "CBJ", "pos": "C", "salary": 5515000, "points": 43, "fow": 50.3 },
+        { "name": "Jesper Bratt", "team": "NJD", "pos": "L", "salary": 5515000, "points": 43, "fow": 33.3 },
+        { "name": "Aliaksei Protas", "team": "WSH", "pos": "C", "salary": 5410000, "points": 42, "fow": 41.0 },
+        { "name": "Artturi Lehkonen", "team": "COL", "pos": "L", "salary": 5410000, "points": 42, "fow": 16.7 },
+        { "name": "Ivan Barbashev", "team": "VGK", "pos": "L", "salary": 5410000, "points": 42, "fow": 23.1 },
+        { "name": "Joel Eriksson Ek", "team": "MIN", "pos": "C", "salary": 5410000, "points": 42, "fow": 48.6 },
+        { "name": "Anton Lundell", "team": "FLA", "pos": "C", "salary": 5410000, "points": 42, "fow": 52.3 },
+        { "name": "Ryan McLeod", "team": "BUF", "pos": "C", "salary": 5410000, "points": 42, "fow": 46.6 },
+        { "name": "Josh Morrissey", "pos": "D", "salary": 5410000, "points": 42, "fow": 0.0, "team": "WPG" },
+        { "name": "Bo Horvat", "team": "NYI", "pos": "C", "salary": 5305000, "points": 41, "fow": 56.5 },
+        { "name": "Jordan Eberle", "team": "SEA", "pos": "R", "salary": 5305000, "points": 41, "fow": 37.5 },
+        { "name": "Bryan Rust", "team": "PIT", "pos": "R", "salary": 5305000, "points": 41, "fow": 0.0 }
     ]
 };
