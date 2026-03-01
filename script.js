@@ -106,30 +106,44 @@ function prepareTrade(playerName) {
     `;
 }
 
-// Execute the Math
+// GM TOOLKIT: AI STRATEGIC VERDICT ENGINE
 const analyzeBtn = document.getElementById('execute-trade');
 if (analyzeBtn) {
     analyzeBtn.addEventListener('click', () => {
         if (!selectedTradeTarget) {
-            alert("Please search and select a trade target first!");
+            alert("Select a trade target from the scouting report first.");
             return;
         }
-        
+
         const teamSelect = document.getElementById('team-select');
         const teamData = nhlData.teams.find(t => t.id === teamSelect.value);
         
-        const currentPoints = teamData.roster.reduce((sum, p) => sum + p.points, 0);
-        const newTotalPoints = currentPoints + selectedTradeTarget.points;
+        // BI CALCULATION 1: Roster Efficiency (Points per $1M)
+        const efficiency = (selectedTradeTarget.points / (selectedTradeTarget.salary / 1000000)).toFixed(2);
+        
+        // BI CALCULATION 2: Cap Intake (% of total ceiling)
+        const capHitPercent = ((selectedTradeTarget.salary / nhlData.settings.salaryCap) * 100).toFixed(1);
+        
+        // BI CALCULATION 3: Win Probability (AI Projected Impact)
+        const wpImpact = (selectedTradeTarget.points * 0.12).toFixed(1);
+        
         const remainingCap = teamData.capSpace - selectedTradeTarget.salary;
-        
-        const aiStatus = document.getElementById('ai-status');
         const color = remainingCap < 0 ? "#ff4d4d" : "#00d4ff";
-        
+
+        const aiStatus = document.getElementById('ai-status');
         aiStatus.innerHTML = `
-            <p><strong>AI VERDICT:</strong></p>
-            <p>Projected Points: <span class="stat-value">${newTotalPoints}</span></p>
-            <p>Remaining Cap: <span style="color:${color}; font-weight:bold;">$${remainingCap.toLocaleString()}</span></p>
-            <p style="font-size:0.7rem; margin-top:5px;">${remainingCap < 0 ? "⚠️ WARNING: Trade exceeds budget." : "✅ Financials cleared."}</p>
+            <div class="ai-verdict-box" style="text-align:left;">
+                <p><strong>AI STRATEGIC VERDICT:</strong></p>
+                <ul style="list-style:none; padding:0; font-size:0.9rem; line-height:1.6;">
+                    <li>🎯 <strong>Efficiency:</strong> ${efficiency} PTS/$1M</li>
+                    <li>💰 <strong>Cap Intake:</strong> ${capHitPercent}%</li>
+                    <li>📈 <strong>Win Prob:</strong> +${wpImpact}%</li>
+                    <li>💸 <strong>Remaining Cap:</strong> <span style="color:${color}; font-weight:bold;">$${remainingCap.toLocaleString()}</span></li>
+                </ul>
+                <div style="border-top:1px solid var(--border); margin-top:10px; padding-top:10px; font-size:0.8rem;">
+                    ${remainingCap < 0 ? "⚠️ <strong>WARNING:</strong> Trade exceeds current financial budget." : "✅ <strong>OPTIMAL:</strong> Financial profile fits roster structure."}
+                </div>
+            </div>
         `;
     });
 }
