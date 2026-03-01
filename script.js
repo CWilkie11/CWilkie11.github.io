@@ -69,16 +69,27 @@ function loadRoster() {
 
 // 4. GM TOOLKIT: SEARCH & TRADE LOGIC
 function searchPlayers() {
-    const query = document.getElementById('player-search').value.toLowerCase();
+    const searchInput = document.getElementById('player-search');
     const resultsContainer = document.getElementById('search-results');
-    if (!resultsContainer || query.length < 2) return;
+    
+    if (!searchInput || !resultsContainer) return;
 
+    const query = searchInput.value.toLowerCase().trim();
     resultsContainer.innerHTML = '';
 
+    // Only search if the user has typed at least 2 characters
+    if (query.length < 2) return;
+
+    // Search the globalPool by name OR team abbreviation
     const filtered = nhlData.globalPool.filter(player => 
         player.name.toLowerCase().includes(query) || 
         player.team.toLowerCase().includes(query)
     );
+
+    if (filtered.length === 0) {
+        resultsContainer.innerHTML = '<p style="padding:10px; opacity:0.5;">No players found.</p>';
+        return;
+    }
 
     filtered.forEach(player => {
         const resultCard = document.createElement('div');
@@ -88,7 +99,7 @@ function searchPlayers() {
                 <strong>${player.name}</strong> [${player.team}]
                 <div style="font-size: 0.8rem; opacity: 0.7;">$${player.salary.toLocaleString()} | ${player.points} PTS</div>
             </div>
-            <button class="add-btn" onclick="prepareTrade('${player.name}')">+</button>
+            <button class="add-btn" onclick="prepareTrade('${player.name.replace(/'/g, "\\'")}')">+</button>
         `;
         resultsContainer.appendChild(resultCard);
     });
