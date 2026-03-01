@@ -130,7 +130,7 @@ function selectAsset(side, playerName) {
     updateSystemStatus("Assets identified. Ready for War Room analysis.");
 }
 
-// 6. IMPACT VERDICT ENGINE
+// 6. IMPACT VERDICT ENGINE (BI DATA ANALYSIS)
 const analyzeBtn = document.getElementById('execute-trade');
 if (analyzeBtn) {
     analyzeBtn.addEventListener('click', () => {
@@ -139,4 +139,38 @@ if (analyzeBtn) {
             return;
         }
 
-        const pointDelta = assetB.points - assetA
+        // Calculation 1: Production Delta (Based on 'P' from XLSX)
+        const pointDelta = assetB.points - assetA.points;
+        
+        // Calculation 2: Possession Impact (Based on 'FOW%' from XLSX)
+        const fowDelta = (assetB.fow - assetA.fow).toFixed(1);
+        
+        // Calculation 3: Financial Risk
+        const salaryDelta = assetB.salary - assetA.salary;
+
+        const aiStatus = document.getElementById('ai-status');
+        aiStatus.innerHTML = `
+            <div class="ai-verdict-box" style="text-align:left;">
+                <p style="font-family:'Orbitron'; color:#00d4ff; border-bottom:1px solid #334155;">STRATEGIC ANALYSIS</p>
+                <ul style="list-style:none; padding:0; font-size:0.85rem; line-height:1.8;">
+                    <li>🏒 <strong>Net Production:</strong> ${pointDelta > 0 ? '+' : ''}${pointDelta} Points</li>
+                    <li>🔄 <strong>Possession Shift:</strong> ${fowDelta > 0 ? '+' : ''}${fowDelta}% FOW</li>
+                    <li>💰 <strong>Cap Flux:</strong> $${salaryDelta.toLocaleString()}</li>
+                </ul>
+                <div style="background: rgba(0, 212, 255, 0.1); padding: 8px; border-radius: 4px; font-size: 0.75rem; margin-top: 10px;">
+                    <strong>AI VERDICT:</strong> ${generateAIVerdict(pointDelta, fowDelta, salaryDelta)}
+                </div>
+            </div>
+        `;
+        updateSystemStatus("Data Correlation Complete. Verdict Rendered.");
+    });
+}
+
+// AI Analysis Logic based on the stats
+function generateAIVerdict(pts, fow, money) {
+    if (pts > 10 && money <= 0) return "High-value acquisition. Elite production increase with zero cap inflation.";
+    if (pts < 0 && money < -2000000) return "Strategic cap dump. Sacrificing production for long-term financial flexibility.";
+    if (fow > 5) return "Positional upgrade. Significant improvement in puck possession and faceoff circle control.";
+    if (pts > 0) return "Marginal production upgrade. Fits current roster scoring profile.";
+    return "Lateral move detected. Minor impact on overall franchise trajectory.";
+}
