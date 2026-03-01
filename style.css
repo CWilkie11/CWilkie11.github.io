@@ -636,3 +636,28 @@ html { scroll-behavior: smooth; }
 @media (max-width: 900px) {
     .toolkit-grid { grid-template-columns: 1fr; }
 }
+
+/* War Room Team Headings */
+.team-heading {
+    font-family: 'Orbitron', 'Inter', sans-serif; /* A sharp, professional tech font */
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #00d4ff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+    padding-bottom: 5px;
+}
+
+/* Customizing the Select Inputs for a "Front Office" Feel */
+.gm-input {
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #f8fafc;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
