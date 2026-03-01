@@ -1,3 +1,8 @@
+/**
+ * HYPERDRIVE AI: WAR ROOM ENGINE
+ * Finalized Logic for Inter-Franchise Asset Exchange
+ */
+
 // Global variables to hold the two assets being compared
 let assetA = null;
 let assetB = null;
@@ -7,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleButton = document.getElementById('theme-toggle');
     const body = document.body;
 
+    // Apply saved preference on load
     if (localStorage.getItem('theme') === 'dark') {
         body.classList.add('dark-mode');
         if (toggleButton) toggleButton.innerText = '☀️ Light Mode';
@@ -16,7 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleButton.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
             const isDark = body.classList.contains('dark-mode');
+            
+            // Save preference
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            
+            // Update button text
             toggleButton.innerText = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
         });
     }
@@ -63,18 +73,24 @@ function loadRoster(side) {
 
     if (!teamData) return;
 
-    // PROFESSIONAL TWEAK: Replace "Franchise" text with the official team name
+    // BUSINESS PROFESSIONAL TWEAK: Replace "Franchise" text with official Team Name
     if (teamHeading) {
         teamHeading.innerText = teamData.name;
     }
 
-    // Update Status Bubble
+    // Update Status Bubble with Franchise Name
     updateSystemStatus(`Franchise ${teamData.name} Loaded. Accessing Scouting Reports...`);
 
     // Update Cap and Clear old roster
     capAmount.innerText = `$${teamData.capSpace.toLocaleString()}`;
     rosterDisplay.innerHTML = '';
     
+    // Check if roster has players
+    if (teamData.roster.length === 0) {
+        rosterDisplay.innerHTML = '<p style="opacity:0.5; padding:20px;">Scouting report in progress for this franchise...</p>';
+        return;
+    }
+
     // Inject the players from the database
     teamData.roster.forEach(player => {
         const card = document.createElement('div');
@@ -82,7 +98,7 @@ function loadRoster(side) {
         card.innerHTML = `
             <div>
                 <strong>${player.name}</strong> (${player.pos})
-                <div style="font-size: 0.75rem; opacity: 0.7;">$${player.salary.toLocaleString()}</div>
+                <div style="font-size: 0.75rem; opacity: 0.7;">Salary: $${player.salary.toLocaleString()}</div>
             </div>
             <button class="add-btn" onclick="selectAsset('${side}', '${player.name.replace(/'/g, "\\'")}')">+</button>
         `;
@@ -90,7 +106,7 @@ function loadRoster(side) {
     });
 }
 
-// 5. SELECTION LOGIC (Moves players to the Impact Verdict Column)
+// 5. SELECTION LOGIC (Moves players to the Impact Verdict Comparison Column)
 function selectAsset(side, playerName) {
     const selectId = side === 'A' ? 'team-a-select' : 'team-b-select';
     const teamId = document.getElementById(selectId).value;
@@ -101,13 +117,13 @@ function selectAsset(side, playerName) {
         assetA = player;
         document.querySelector('#slot-a .slot-content').innerHTML = `
             <div style="color: #00d4ff; font-weight: bold;">${assetA.name}</div>
-            <div style="font-size: 0.8rem;">${assetA.points} PTS</div>
+            <div style="font-size: 0.8rem;">${assetA.points} PTS | ${assetA.pos}</div>
         `;
     } else {
         assetB = player;
         document.querySelector('#slot-b .slot-content').innerHTML = `
             <div style="color: #00d4ff; font-weight: bold;">${assetB.name}</div>
-            <div style="font-size: 0.8rem;">${assetB.points} PTS</div>
+            <div style="font-size: 0.8rem;">${assetB.points} PTS | ${assetB.pos}</div>
         `;
     }
     
@@ -123,30 +139,4 @@ if (analyzeBtn) {
             return;
         }
 
-        const pointDelta = assetB.points - assetA.points;
-        const salaryDelta = assetB.salary - assetA.salary;
-
-        const aiStatus = document.getElementById('ai-status');
-        aiStatus.innerHTML = `
-            <div class="ai-verdict-box" style="text-align:left;">
-                <p><strong>IMPACT VERDICT:</strong></p>
-                <ul style="list-style:none; padding:0; font-size:0.85rem; line-height:1.6;">
-                    <li>📊 <strong>Production Delta:</strong> ${pointDelta > 0 ? '+' : ''}${pointDelta} PTS</li>
-                    <li>💰 <strong>Salary Delta:</strong> $${salaryDelta.toLocaleString()}</li>
-                </ul>
-                <div style="border-top:1px solid #334155; margin-top:10px; padding-top:10px; font-size:0.75rem;">
-                    <strong>AI NOTES:</strong> ${pointDelta > 0 ? "Strategic upgrade in production." : "Depth sacrifice for long-term cap relief."}
-                </div>
-            </div>
-        `;
-        updateSystemStatus("Simulation Complete. Verdict Rendered.");
-    });
-}
-
-// 7. RESET ROOM
-const resetBtn = document.getElementById('reset-trade');
-if (resetBtn) {
-    resetBtn.addEventListener('click', () => {
-        location.reload(); 
-    });
-}
+        const pointDelta = assetB.points - assetA
