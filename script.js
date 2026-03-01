@@ -72,3 +72,29 @@ if (teamDropdown) {
     // Initial Load
     window.addEventListener('load', loadRoster);
 }
+
+function searchPlayers() {
+    const query = document.getElementById('player-search').value.toLowerCase();
+    const resultsContainer = document.getElementById('search-results');
+    if (!resultsContainer || query.length < 2) return;
+
+    resultsContainer.innerHTML = '';
+
+    const filtered = nhlData.globalPool.filter(player => 
+        player.name.toLowerCase().includes(query) || 
+        player.team.toLowerCase().includes(query)
+    );
+
+    filtered.forEach(player => {
+        const resultCard = document.createElement('div');
+        resultCard.className = 'player-card';
+        resultCard.innerHTML = `
+            <div>
+                <strong>${player.name}</strong> [${player.team}]
+                <div style="font-size: 0.8rem; opacity: 0.7;">$${player.salary.toLocaleString()} | ${player.points} PTS</div>
+            </div>
+            <button class="add-btn" onclick="prepareTrade(${player.id})">+</button>
+        `;
+        resultsContainer.appendChild(resultCard);
+    });
+}
