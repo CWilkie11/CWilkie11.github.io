@@ -24,18 +24,51 @@
         </div>
     </header>
 
-    <main>
-        <section class="full-post">
-            <h1>Front Office Simulation: NHL Trade Machine</h1>
-            <p>Welcome to the GM Toolkit. [cite_start]This is a specialized Business Intelligence environment designed to simulate the financial and tactical impact of roster changes[cite: 16, 21].</p>
-            
-            <div class="perspective-box">
-                [cite_start]<p><strong>Status:</strong> System Initializing... Awaiting Player Data. [cite: 31]</p>
+   <main>
+    <section class="full-post">
+        <h1>Front Office Simulation: NHL Trade Machine</h1>
+        <p>Welcome to the GM Toolkit. This is a specialized Business Intelligence environment designed to simulate the financial and tactical impact of roster changes.</p>
+        
+        <div class="perspective-box">
+            <p><strong>Status:</strong> System Initializing... Awaiting Player Data.</p>
+        </div>
+
+        <div class="toolkit-grid">
+            <div class="toolkit-panel" id="my-team-panel">
+                <div class="panel-header">
+                    <h3>Current Roster</h3>
+                    <select id="team-select" class="gm-input">
+                        <option value="chi">Chicago Blackhawks</option>
+                        <option value="tor">Toronto Maple Leafs</option>
+                    </select>
+                </div>
+                <div id="roster-display" class="player-list"></div>
+                <div class="cap-tracker">
+                    <span>Available Cap:</span>
+                    <span id="cap-amount" class="stat-value">$0</span>
+                </div>
             </div>
 
-            <div id="trade-interface"></div>
-        </section>
-    </main>
+            <div class="toolkit-panel analytics-center">
+                <h3>AI Impact Verdict</h3>
+                <div class="impact-gauge">
+                    <label>Offensive Output (xG)</label>
+                    <div class="gauge-bar"><div id="offense-fill" class="fill"></div></div>
+                </div>
+                <div class="perspective-box" id="ai-status">
+                    <p>Select players to begin trade simulation.</p>
+                </div>
+                <button id="execute-trade" class="trade-btn">Analyze Scenario</button>
+            </div>
+
+            <div class="toolkit-panel" id="trade-target-panel">
+                <h3>Trade Targets</h3>
+                <input type="text" id="player-search" placeholder="Search NHL Database..." class="gm-input">
+                <div id="search-results" class="player-list"></div>
+            </div>
+        </div>
+    </section>
+</main>
 
     <footer>
         <p>&copy; 2026 Coltan Wilkie | CAH 205 AI Newsletter Project</p>
