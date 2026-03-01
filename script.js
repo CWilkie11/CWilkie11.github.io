@@ -41,10 +41,34 @@ function loadRoster() {
     const rosterDisplay = document.getElementById('roster-display');
     const capAmount = document.getElementById('cap-amount');
     
-    if (!teamSelect || !rosterDisplay) return; // Only runs on toolkit page
+    if (!teamSelect || !rosterDisplay) return;
 
     const selectedTeamId = teamSelect.value;
     const teamData = nhlData.teams.find(t => t.id === selectedTeamId);
+
+    // If we haven't added roster data for a team yet, show a 'Scouting' message
+    if (!teamData || teamData.roster.length === 0) {
+        rosterDisplay.innerHTML = '<p style="opacity:0.5; padding:20px;">Scouting report in progress for this franchise...</p>';
+        capAmount.innerText = '$---';
+        return;
+    }
+
+    capAmount.innerText = `$${teamData.capSpace.toLocaleString()}`;
+    rosterDisplay.innerHTML = '';
+    
+    teamData.roster.forEach(player => {
+        const card = document.createElement('div');
+        card.className = 'player-card';
+        card.innerHTML = `
+            <div>
+                <strong>${player.name}</strong> (${player.pos})
+                <div style="font-size: 0.8rem; opacity: 0.7;">Salary: $${player.salary.toLocaleString()}</div>
+            </div>
+            <div class="stat-value">${player.points} PTS</div>
+        `;
+        rosterDisplay.appendChild(card);
+    });
+}
 
     // Update Cap Display
     capAmount.innerText = `$${teamData.capSpace.toLocaleString()}`;
