@@ -33,41 +33,45 @@
             <p><strong>Status:</strong> <span id="system-status">System Initializing... Awaiting Player Data.</span></p>
         </div>
 
-        <div class="toolkit-grid">
-            <div class="toolkit-panel">
-                <div class="panel-header">
-                    <h3>Franchise A</h3>
-                    <select id="team-a-select" class="gm-input" onchange="loadRoster('A')">
-                        <option value="" disabled selected>Select Team</option>
-                        <option value="ANA">Anaheim Ducks</option>
-                        <option value="CHI">Chicago Blackhawks</option>
-                        <option value="COL">Colorado Avalanche</option>
-                        <option value="EDM">Edmonton Oilers</option>
-                        <option value="TOR">Toronto Maple Leafs</option>
-                        <option value="VGK">Vegas Golden Knights</option>
-                        <option value="UTA">Utah Mammoth</option>
-                        </select>
-                </div>
-                <div id="roster-a" class="player-list"></div>
-                <div class="cap-tracker">
-                    <span>Cap:</span>
-                    <span id="cap-a" class="stat-value">$---</span>
-                </div>
-            </div>
+       <div class="toolkit-grid">
+    <div class="toolkit-panel">
+        <div class="panel-header">
+            <h3 id="team-a-name" class="team-heading">Franchise A</h3>
+            <select id="team-a-select" class="gm-input" onchange="loadRoster('A')">
+                <option value="" disabled selected>Select Franchise</option>
+                <option value="ANA">Anaheim Ducks</option>
+                <option value="CHI">Chicago Blackhawks</option>
+                <option value="EDM">Edmonton Oilers</option>
+                <option value="TOR">Toronto Maple Leafs</option>
+                <option value="VGK">Vegas Golden Knights</option>
+            </select>
+        </div>
+        <div id="roster-a" class="player-list"></div>
+        <div class="cap-tracker">
+            <span>Cap Space:</span>
+            <span id="cap-a" class="stat-value">$---</span>
+        </div>
+    </div>
 
-            <div class="toolkit-panel analytics-center">
-                <h3>Impact Verdict</h3>
-                <div class="trade-comparison">
-                    <div class="trade-slot" id="slot-a">
-                        <small>ASSET FROM A</small>
-                        <div class="slot-content">-- Select --</div>
-                    </div>
-                    <div class="trade-icon">⇅</div>
-                    <div class="trade-slot" id="slot-b">
-                        <small>ASSET FROM B</small>
-                        <div class="slot-content">-- Select --</div>
-                    </div>
-                </div>
+    <div class="toolkit-panel">
+        <div class="panel-header">
+            <h3 id="team-b-name" class="team-heading">Franchise B</h3>
+            <select id="team-b-select" class="gm-input" onchange="loadRoster('B')">
+                <option value="" disabled selected>Select Franchise</option>
+                <option value="ANA">Anaheim Ducks</option>
+                <option value="CHI">Chicago Blackhawks</option>
+                <option value="EDM">Edmonton Oilers</option>
+                <option value="TOR">Toronto Maple Leafs</option>
+                <option value="VGK">Vegas Golden Knights</option>
+            </select>
+        </div>
+        <div id="roster-b" class="player-list"></div>
+        <div class="cap-tracker">
+            <span>Cap Space:</span>
+            <span id="cap-b" class="stat-value">$---</span>
+        </div>
+    </div>
+</div>
 
                 <div class="perspective-box" id="ai-status">
                     <p>Select assets from both franchises to simulate impact.</p>
