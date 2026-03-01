@@ -22,3 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// 2. SCROLL LOGIC FOR STICKY HEADER
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('.main-header');
+    
+    // If the user scrolls more than 50 pixels down, activate the "scrolled" dashboard state
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
