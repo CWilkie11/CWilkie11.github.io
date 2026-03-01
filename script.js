@@ -34,3 +34,41 @@ window.addEventListener('scroll', () => {
         header.classList.remove('scrolled');
     }
 });
+
+// 3. GM TOOLKIT: DATA INJECTION ENGINE
+function loadRoster() {
+    const teamSelect = document.getElementById('team-select');
+    const rosterDisplay = document.getElementById('roster-display');
+    const capAmount = document.getElementById('cap-amount');
+    
+    if (!teamSelect || !rosterDisplay) return; // Only runs on toolkit page
+
+    const selectedTeamId = teamSelect.value;
+    const teamData = nhlData.teams.find(t => t.id === selectedTeamId);
+
+    // Update Cap Display
+    capAmount.innerText = `$${teamData.capSpace.toLocaleString()}`;
+
+    // Clear and Fill Roster
+    rosterDisplay.innerHTML = '';
+    teamData.roster.forEach(player => {
+        const card = document.createElement('div');
+        card.className = 'player-card';
+        card.innerHTML = `
+            <div>
+                <strong>${player.name}</strong> (${player.pos})
+                <div style="font-size: 0.8rem; opacity: 0.7;">Salary: $${player.salary.toLocaleString()}</div>
+            </div>
+            <div class="stat-value">${player.xG} xG</div>
+        `;
+        rosterDisplay.appendChild(card);
+    });
+}
+
+// Listen for Team Changes
+const teamDropdown = document.getElementById('team-select');
+if (teamDropdown) {
+    teamDropdown.addEventListener('change', loadRoster);
+    // Initial Load
+    window.addEventListener('load', loadRoster);
+}
