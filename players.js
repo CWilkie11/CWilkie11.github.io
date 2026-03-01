@@ -36,3 +36,53 @@ const nhlData = {
         /* Your search engine will automatically pull from all 100 players */
     ]
 };
+
+const nhlData = {
+    settings: { 
+        season: "2025-26", 
+        upperLimit: 95500000, // Official 2026 Cap Ceiling
+        lowerLimit: 70600000  // Official 2026 Cap Floor
+    },
+    teams: [
+        { name: "Anaheim Ducks", id: "ANA", capSpace: 12611311, roster: [] },
+        { name: "Boston Bruins", id: "BOS", capSpace: 8500000, roster: [] },
+        { name: "Buffalo Sabres", id: "BUF", capSpace: 11000000, roster: [] },
+        { name: "Calgary Flames", id: "CGY", capSpace: 14500000, roster: [] },
+        { name: "Carolina Hurricanes", id: "CAR", capSpace: 7200000, roster: [] },
+        { name: "Chicago Blackhawks", id: "CHI", capSpace: 13212024, roster: [
+            { name: "Connor Bedard", pos: "C", salary: 950000, points: 55, fow: 46.2 }
+        ]},
+        { name: "Colorado Avalanche", id: "COL", capSpace: 5400000, roster: [
+            { name: "Nathan MacKinnon", pos: "C", salary: 12600000, points: 97, fow: 51.4 }
+        ]},
+        { name: "Columbus Blue Jackets", id: "CBJ", capSpace: 18000000, roster: [] },
+        { name: "Dallas Stars", id: "DAL", capSpace: 4200000, roster: [] },
+        { name: "Detroit Red Wings", id: "DET", capSpace: 9100000, roster: [] },
+        { name: "Edmonton Oilers", id: "EDM", capSpace: 1200000, roster: [
+            { name: "Connor McDavid", pos: "C", salary: 12500000, points: 103, fow: 47.5 }
+        ]},
+        { name: "Florida Panthers", id: "FLA", capSpace: 3100000, roster: [] },
+        { name: "Los Angeles Kings", id: "LAK", capSpace: 5800000, roster: [] },
+        { name: "Minnesota Wild", id: "MIN", capSpace: 2400000, roster: [] },
+        { name: "Montreal Canadiens", id: "MTL", capSpace: 10500000, roster: [] },
+        { name: "Nashville Predators", id: "NSH", capSpace: 6700000, roster: [] },
+        { name: "New Jersey Devils", id: "NJD", capSpace: 8900000, roster: [] },
+        { name: "New York Islanders", id: "NYI", capSpace: 4500000, roster: [] },
+        { name: "New York Rangers", id: "NYR", capSpace: 12690863, roster: [] },
+        { name: "Ottawa Senators", id: "OTT", capSpace: 9400000, roster: [] },
+        { name: "Philadelphia Flyers", id: "PHI", capSpace: 5200000, roster: [] },
+        { name: "Pittsburgh Penguins", id: "PIT", capSpace: 3800000, roster: [] },
+        { name: "San Jose Sharks", id: "SJS", capSpace: 19789999, roster: [] },
+        { name: "Seattle Kraken", id: "SEA", capSpace: 11200000, roster: [] },
+        { name: "St. Louis Blues", id: "STL", capSpace: 7100000, roster: [] },
+        { name: "Tampa Bay Lightning", id: "TBL", capSpace: 1500000, roster: [] },
+        { name: "Toronto Maple Leafs", id: "TOR", capSpace: 9906498, roster: [
+            { name: "Auston Matthews", pos: "C", salary: 13250000, points: 51, fow: 59.3 }
+        ]},
+        { name: "Utah Mammoth", id: "UTA", capSpace: 15400000, roster: [] },
+        { name: "Vancouver Canucks", id: "VAN", capSpace: 4100000, roster: [] },
+        { name: "Vegas Golden Knights", id: "VGK", capSpace: 2900000, roster: [] },
+        { name: "Washington Capitals", id: "WAS", capSpace: 6100000, roster: [] },
+        { name: "Winnipeg Jets", id: "WPG", capSpace: 8200000, roster: [] }
+    ]
+};
