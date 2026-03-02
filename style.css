@@ -704,3 +704,41 @@ html { scroll-behavior: smooth; }
     padding-bottom: 5px;
     margin-bottom: 15px;
 }
+
+/* Post 7 Specific Styles */
+.feature-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.feature-list li {
+    margin-bottom: 20px;
+    padding-left: 25px;
+    border-left: 2px solid var(--accent);
+}
+
+.stat-item {
+    margin-bottom: 15px;
+    font-size: 0.85rem;
+    color: var(--text-main);
+}
+
+.stat-bar {
+    background: rgba(255,255,255,0.1);
+    height: 8px;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.bar-fill {
+    background: var(--accent);
+    height: 100%;
+    border-radius: 4px;
+    box-shadow: 0 0 10px var(--accent);
+}
+
+/* Hero Background for Post 7 */
+.deadline-bg {
+    background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1504450758481-7338eba7524a?auto=format&fit=crop&q=80&w=1200');
+    background-size: cover;
+}
