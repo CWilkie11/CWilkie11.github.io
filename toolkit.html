@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -51,3 +51,124 @@
                     <select id="team-a-select" class="gm-input" onchange="loadRoster('A')">
                         <option value="" disabled selected>Select Home Franchise</option>
                         <option value="ANA">Anaheim Ducks</option>
+                        <option value="BOS">Boston Bruins</option>
+                        <option value="BUF">Buffalo Sabres</option>
+                        <option value="CAR">Carolina Hurricanes</option>
+                        <option value="CHI">Chicago Blackhawks</option>
+                        <option value="COL">Colorado Avalanche</option>
+                        <option value="CBJ">Columbus Blue Jackets</option>
+                        <option value="DAL">Dallas Stars</option>
+                        <option value="DET">Detroit Red Wings</option>
+                        <option value="EDM">Edmonton Oilers</option>
+                        <option value="FLA">Florida Panthers</option>
+                        <option value="LAK">Los Angeles Kings</option>
+                        <option value="MIN">Minnesota Wild</option>
+                        <option value="MTL">Montreal Canadiens</option>
+                        <option value="NSH">Nashville Predators</option>
+                        <option value="NJD">New Jersey Devils</option>
+                        <option value="NYI">New York Islanders</option>
+                        <option value="NYR">New York Rangers</option>
+                        <option value="OTT">Ottawa Senators</option>
+                        <option value="PHI">Philadelphia Flyers</option>
+                        <option value="PIT">Pittsburgh Penguins</option>
+                        <option value="SJS">San Jose Sharks</option>
+                        <option value="SEA">Seattle Kraken</option>
+                        <option value="STL">St. Louis Blues</option>
+                        <option value="TBL">Tampa Bay Lightning</option>
+                        <option value="TOR">Toronto Maple Leafs</option>
+                        <option value="UTA">Utah Mammoth</option>
+                        <option value="VAN">Vancouver Canucks</option>
+                        <option value="VGK">Vegas Golden Knights</option>
+                        <option value="WSH">Washington Capitals</option>
+                        <option value="WPG">Winnipeg Jets</option>
+                    </select>
+                </div>
+                <div id="roster-a" class="player-list"></div>
+                <div class="cap-tracker">
+                    <span>Current Cap Space:</span>
+                    <span id="cap-a" class="stat-value">$---</span>
+                </div>
+            </div>
+
+            <div class="toolkit-panel analytics-center">
+                <h3 style="text-align: center; margin-bottom: 20px;">GM DECISION SENSOR</h3>
+                
+                <div class="war-room-center" style="display: flex; justify-content: center; align-items: center; width: 100%; gap: 10px;">
+                    <div class="trade-slot" id="slot-a">
+                        <small style="color: #3b82f6; font-weight: bold;">OFFERED ASSET</small>
+                        <div class="slot-content">-- Empty --</div>
+                    </div>
+                    
+                    <div class="vs-divider" style="font-family: 'Orbitron'; color: #94a3b8; padding: 0 15px;">⇄</div>
+                    
+                    <div class="trade-slot" id="slot-b">
+                        <small style="color: #ef4444; font-weight: bold;">TARGET RETURN</small>
+                        <div class="slot-content">-- Empty --</div>
+                    </div>
+                </div> 
+
+                <div class="perspective-box" id="ai-status" style="text-align: center; margin-top: 25px; width: 100%;">
+                    <p style="font-size: 0.7rem; color: #94a3b8; text-transform: uppercase;">Home GM Approval Probability:</p>
+                    <div id="gm-verdict-display" style="font-size: 1.2rem; font-weight: 900; color: #00d4ff;">AWAITING PROPOSAL...</div>
+                </div>
+                
+                <button id="execute-trade" class="trade-btn" style="width: 100%; margin-top: 20px;">SIMULATE GM DECISION</button>
+                <button id="reset-trade" class="trade-btn" style="width: 100%; background:#334155; margin-top:10px;">CLEAR ALL TERMS</button>
+            </div>
+
+            <div class="toolkit-panel">
+                <div class="panel-header">
+                    <h3 id="team-b-name" class="team-heading">NHL AWAY</h3>
+                    <select id="team-b-select" class="gm-input" onchange="loadRoster('B')">
+                        <option value="" disabled selected>Select Away Franchise</option>
+                        <option value="ANA">Anaheim Ducks</option>
+                        <option value="BOS">Boston Bruins</option>
+                        <option value="BUF">Buffalo Sabres</option>
+                        <option value="CAR">Carolina Hurricanes</option>
+                        <option value="CHI">Chicago Blackhawks</option>
+                        <option value="COL">Colorado Avalanche</option>
+                        <option value="CBJ">Columbus Blue Jackets</option>
+                        <option value="DAL">Dallas Stars</option>
+                        <option value="DET">Detroit Red Wings</option>
+                        <option value="EDM">Edmonton Oilers</option>
+                        <option value="FLA">Florida Panthers</option>
+                        <option value="LAK">Los Angeles Kings</option>
+                        <option value="MIN">Minnesota Wild</option>
+                        <option value="MTL">Montreal Canadiens</option>
+                        <option value="NSH">Nashville Predators</option>
+                        <option value="NJD">New Jersey Devils</option>
+                        <option value="NYI">New York Islanders</option>
+                        <option value="NYR">New York Rangers</option>
+                        <option value="OTT">Ottawa Senators</option>
+                        <option value="PHI">Philadelphia Flyers</option>
+                        <option value="PIT">Pittsburgh Penguins</option>
+                        <option value="SJS">San Jose Sharks</option>
+                        <option value="SEA">Seattle Kraken</option>
+                        <option value="STL">St. Louis Blues</option>
+                        <option value="TBL">Tampa Bay Lightning</option>
+                        <option value="TOR">Toronto Maple Leafs</option>
+                        <option value="UTA">Utah Mammoth</option>
+                        <option value="VAN">Vancouver Canucks</option>
+                        <option value="VGK">Vegas Golden Knights</option>
+                        <option value="WSH">Washington Capitals</option>
+                        <option value="WPG">Winnipeg Jets</option>
+                    </select>
+                </div>
+                <div id="roster-b" class="player-list"></div>
+                <div class="cap-tracker">
+                    <span>Current Cap Space:</span>
+                    <span id="cap-b" class="stat-value">$---</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+    <footer>
+        <p>&copy; 2026 Coltan Wilkie | CAH 205 AI Newsletter Project</p>
+    </footer>
+
+    <script src="players.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
