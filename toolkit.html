@@ -27,19 +27,23 @@
 
    <main>
     <section class="full-post">
-        <h1>The HyperDrive War Room</h1>
-        <p>A specialized Business Intelligence environment for simulating inter-franchise asset exchange and financial risk.</p>
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h1 style="font-size: 2.5rem; color: #00d4ff;">The HyperDrive War Room</h1>
+            <p style="max-width: 700px; margin: 0 auto; color: #94a3b8;">
+                A specialized Business Intelligence environment for simulating inter-franchise asset exchange and financial risk.
+            </p>
+        </div>
         
-        <div class="perspective-box">
-            <p><strong>Status:</strong> <span id="system-status">System Online... Awaiting Franchise Data.</span></p>
+        <div class="perspective-box" style="text-align: center; max-width: 500px; margin: 0 auto 40px auto; border: 1px solid #00d4ff;">
+            <p><strong>AI Verdict:</strong> <span id="system-status" style="color: #00ff00; font-family: monospace;">System Online... Analyzing NHL Home ROI.</span></p>
         </div>
 
         <div class="toolkit-grid">
             <div class="toolkit-panel">
                 <div class="panel-header">
-                    <h3 id="team-a-name" class="team-heading">Franchise A</h3>
+                    <h3 id="team-a-name" class="team-heading" style="color: #00d4ff;">NHL HOME</h3>
                     <select id="team-a-select" class="gm-input" onchange="loadRoster('A')">
-                        <option value="" disabled selected>Select Franchise</option>
+                        <option value="" disabled selected>Select Home Franchise</option>
                         <option value="ANA">Anaheim Ducks</option>
                         <option value="BOS">Boston Bruins</option>
                         <option value="BUF">Buffalo Sabres</option>
@@ -75,41 +79,41 @@
                 </div>
                 <div id="roster-a" class="player-list"></div>
                 <div class="cap-tracker">
-                    <span>Cap Space:</span>
+                    <span>Current Cap Space:</span>
                     <span id="cap-a" class="stat-value">$---</span>
                 </div>
             </div>
 
             <div class="toolkit-panel analytics-center">
-                <h3>Impact Verdict</h3>
+                <h3 style="text-align: center; margin-bottom: 20px;">Asset Analysis</h3>
                 
                 <div class="war-room-center">
                     <div class="trade-slot" id="slot-a">
-                        <small>FROM A</small>
+                        <small style="color: #00d4ff; font-weight: bold;">HOME ASSET</small>
                         <div class="slot-content">-- Empty --</div>
                     </div>
                     
                     <div class="vs-divider">VS</div>
                     
                     <div class="trade-slot" id="slot-b">
-                        <small>FROM B</small>
+                        <small style="color: #ff4d4d; font-weight: bold;">AWAY TARGET</small>
                         <div class="slot-content">-- Empty --</div>
                     </div>
                 </div>
 
-                <div class="perspective-box" id="ai-status">
-                    <p>Select assets from both franchises to simulate impact.</p>
+                <div class="perspective-box" id="ai-status" style="font-size: 0.9rem; text-align: center;">
+                    <p>Select assets to calculate impact on Home Team trajectory.</p>
                 </div>
                 
-                <button id="execute-trade" class="trade-btn">Analyze Trade</button>
-                <button id="reset-trade" class="trade-btn" style="background:#334155; margin-top:5px;">Reset War Room</button>
+                <button id="execute-trade" class="trade-btn">Execute AI Analysis</button>
+                <button id="reset-trade" class="trade-btn" style="background:#334155; margin-top:5px;">Clear War Room</button>
             </div>
 
             <div class="toolkit-panel">
                 <div class="panel-header">
-                    <h3 id="team-b-name" class="team-heading">Franchise B</h3>
+                    <h3 id="team-b-name" class="team-heading">NHL AWAY</h3>
                     <select id="team-b-select" class="gm-input" onchange="loadRoster('B')">
-                        <option value="" disabled selected>Select Franchise</option>
+                        <option value="" disabled selected>Select Away Franchise</option>
                         <option value="ANA">Anaheim Ducks</option>
                         <option value="BOS">Boston Bruins</option>
                         <option value="BUF">Buffalo Sabres</option>
@@ -145,7 +149,7 @@
                 </div>
                 <div id="roster-b" class="player-list"></div>
                 <div class="cap-tracker">
-                    <span>Cap Space:</span>
+                    <span>Current Cap Space:</span>
                     <span id="cap-b" class="stat-value">$---</span>
                 </div>
             </div>
