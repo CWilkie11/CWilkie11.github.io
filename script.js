@@ -176,3 +176,31 @@ if (analyzeBtn) {
         }
     });
 }
+
+// 6. RESET ENGINE (Clear All Terms)
+const resetBtn = document.getElementById('reset-trade');
+if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+        // Clear variables
+        assetHome = null;
+        assetAway = null;
+
+        // Reset the trade slots in the UI
+        document.querySelector('#slot-a .slot-content').innerHTML = "-- Empty --";
+        document.querySelector('#slot-b .slot-content').innerHTML = "-- Empty --";
+
+        // Reset the GM Negotiation Hub (Top Bubble)
+        updateAwayStatus("AWAITING PROPOSAL...", "#00ff00", "(Select assets to initiate negotiations)");
+
+        // Reset the internal analytics box
+        const aiStatus = document.getElementById('ai-status');
+        if (aiStatus) {
+            aiStatus.innerHTML = `
+                <p style="font-size: 0.7rem; color: #94a3b8; text-transform: uppercase;">Home GM Approval Probability:</p>
+                <div id="gm-verdict-display" style="font-size: 1.2rem; font-weight: 900; color: #00d4ff;">AWAITING PROPOSAL...</div>
+            `;
+        }
+        
+        console.log("War Room Engine: Terms Cleared. System Reset.");
+    });
+}
