@@ -743,39 +743,47 @@ html { scroll-behavior: smooth; }
     background-size: cover;
 }
 
-/* Lock the Grid to maintain center alignment */
+/* --- FIXED WAR ROOM GRID (CSS GRID) --- */
+
 .toolkit-grid {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    display: grid;
+    /* Column 1: Home | Column 2: Engine (350px) | Column 3: Away */
+    grid-template-columns: 1fr 350px 1fr; 
     gap: 20px;
+    align-items: start;
     width: 100%;
-    max-width: 1400px; /* Adjust based on your preference */
+    max-width: 1400px;
     margin: 0 auto;
 }
 
-/* Ensure both side panels are identical in width */
-.toolkit-panel:first-child, 
-.toolkit-panel:last-child {
-    flex: 1 1 300px; /* Allows them to grow/shrink equally */
-    min-width: 280px;
-    max-width: 350px; /* Prevents long names from stretching the box */
-}
-
-/* Force long team names to wrap or truncate instead of pushing the box */
-.team-heading {
-    white-space: normal; /* Allows name to wrap to two lines */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: center;
-    min-height: 3em; /* keeps alignment consistent if one name is longer */
-}
-
-/* The Center Panel must remain a fixed width to stay centered */
+/* Forces the center panel to stay in the middle column */
 .analytics-center {
-    flex: 0 0 320px; /* Does not grow or shrink */
+    grid-column: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+}
+
+/* Forces side panels to stay in their lanes */
+.toolkit-panel:first-child { grid-column: 1; }
+.toolkit-panel:last-child { grid-column: 3; }
+
+/* Prevents names like "Columbus Blue Jackets" from pushing the walls out */
+.team-heading {
+    white-space: normal;
+    word-wrap: break-word;
+    text-align: center;
+    font-size: 1.5rem;
+    min-height: 3.5rem; /* Ensures both sides have the same vertical start point */
+    color: var(--text-header);
+}
+
+/* Keeps the trade bubbles centered within their 350px lane */
+.war-room-center {
+    display: flex;
     justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
 }
