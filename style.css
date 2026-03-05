@@ -742,3 +742,40 @@ html { scroll-behavior: smooth; }
     background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1504450758481-7338eba7524a?auto=format&fit=crop&q=80&w=1200');
     background-size: cover;
 }
+
+/* Lock the Grid to maintain center alignment */
+.toolkit-grid {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    max-width: 1400px; /* Adjust based on your preference */
+    margin: 0 auto;
+}
+
+/* Ensure both side panels are identical in width */
+.toolkit-panel:first-child, 
+.toolkit-panel:last-child {
+    flex: 1 1 300px; /* Allows them to grow/shrink equally */
+    min-width: 280px;
+    max-width: 350px; /* Prevents long names from stretching the box */
+}
+
+/* Force long team names to wrap or truncate instead of pushing the box */
+.team-heading {
+    white-space: normal; /* Allows name to wrap to two lines */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    min-height: 3em; /* keeps alignment consistent if one name is longer */
+}
+
+/* The Center Panel must remain a fixed width to stay centered */
+.analytics-center {
+    flex: 0 0 320px; /* Does not grow or shrink */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
