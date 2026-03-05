@@ -1,18 +1,17 @@
 /**
  * HYPERDRIVE AI: WAR ROOM ENGINE
- * Finalized Logic for Inter-Franchise Asset Exchange
+ * Phase 2: Front Office Negotiation Logic
+ * Feature Set: NHL Home/Away, GM Decision Sensor, xGA Analytics
  */
 
-// Global variables to hold the two assets being compared
-let assetA = null;
-let assetB = null;
+let assetHome = null;
+let assetAway = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. THEME LOGIC
     const toggleButton = document.getElementById('theme-toggle');
     const body = document.body;
 
-    // Apply saved preference on load
     if (localStorage.getItem('theme') === 'dark') {
         body.classList.add('dark-mode');
         if (toggleButton) toggleButton.innerText = '☀️ Light Mode';
@@ -22,40 +21,39 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleButton.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
             const isDark = body.classList.contains('dark-mode');
-            
-            // Save preference
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            
-            // Update button text
             toggleButton.innerText = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
         });
     }
 
-    // Initialize Status
-    updateSystemStatus("System Initializing... Awaiting Franchise Data.");
+    // Initial Status for the Away GM Hub
+    updateAwayStatus("AWAITING PROPOSAL...", "#00ff00", "(Select assets to initiate negotiations)");
 });
 
-// 2. STICKY HEADER LOGIC
+// 2. STICKY HEADER
 window.addEventListener('scroll', () => {
     const header = document.querySelector('.main-header');
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
+    if (header) {
+        window.scrollY > 50 ? header.classList.add('scrolled') : header.classList.remove('scrolled');
     }
 });
 
-// 3. SYSTEM STATUS BUBBLE LOGIC
-function updateSystemStatus(message) {
+// 3. NEGOTIATION FEED LOGIC (Away GM Response Hub)
+function updateAwayStatus(status, color, reasoning) {
     const statusText = document.getElementById('system-status');
+    const reasonText = document.getElementById('gm-reasoning');
+    
     if (statusText) {
-        statusText.innerText = message;
+        statusText.innerText = status;
+        statusText.style.color = color;
+    }
+    if (reasonText) {
+        reasonText.innerText = reasoning;
     }
 }
 
-// 4. WAR ROOM: DUAL ROSTER ENGINE
+// 4. ROSTER ENGINE (Home vs Away)
 function loadRoster(side) {
-    // Identify IDs based on the side (A or B)
     const selectId = side === 'A' ? 'team-a-select' : 'team-b-select';
     const displayId = side === 'A' ? 'roster-a' : 'roster-b';
     const capId = side === 'A' ? 'cap-a' : 'cap-b';
@@ -73,40 +71,33 @@ function loadRoster(side) {
 
     if (!teamData) return;
 
-    // BUSINESS PROFESSIONAL TWEAK: Replace "Franchise" text with official Team Name
-    if (teamHeading) {
-        teamHeading.innerText = teamData.name;
-    }
-
-    // Update Status Bubble with Franchise Name
-    updateSystemStatus(`Franchise ${teamData.name} Loaded. Accessing Scouting Reports...`);
+    // Update Heading to Official Team Name
+    if (teamHeading) teamHeading.innerText = teamData.name;
 
     // Update Cap and Clear old roster
     capAmount.innerText = `$${teamData.capSpace.toLocaleString()}`;
     rosterDisplay.innerHTML = '';
     
-    // Check if roster has players
-    if (teamData.roster.length === 0) {
-        rosterDisplay.innerHTML = '<p style="opacity:0.5; padding:20px;">Scouting report in progress for this franchise...</p>';
-        return;
-    }
-
-    // Inject the players from the database
+    // Inject Players with PPG and xGA
     teamData.roster.forEach(player => {
         const card = document.createElement('div');
         card.className = 'player-card';
         card.innerHTML = `
             <div>
                 <strong>${player.name}</strong> (${player.pos})
-                <div style="font-size: 0.75rem; opacity: 0.7;">Salary: $${player.salary.toLocaleString()}</div>
+                <div style="font-size: 0.7rem; opacity: 0.8;">
+                    PPG: ${player.ppg} | xGA: ${player.xga} | $${(player.salary / 1000000).toFixed(1)}M
+                </div>
             </div>
             <button class="add-btn" onclick="selectAsset('${side}', '${player.name.replace(/'/g, "\\'")}')">+</button>
         `;
         rosterDisplay.appendChild(card);
     });
+
+    updateAwayStatus("FRANCHISE DATA LOADED", "#00d4ff", `Analyzing ${teamData.name} roster depth...`);
 }
 
-// 5. SELECTION LOGIC (Moves players to the Impact Verdict Comparison Column)
+// 5. ASSET SELECTION (Home vs Away Slots)
 function selectAsset(side, playerName) {
     const selectId = side === 'A' ? 'team-a-select' : 'team-b-select';
     const teamId = document.getElementById(selectId).value;
@@ -114,63 +105,74 @@ function selectAsset(side, playerName) {
     const player = team.roster.find(p => p.name === playerName);
 
     if (side === 'A') {
-        assetA = player;
+        assetHome = player;
         document.querySelector('#slot-a .slot-content').innerHTML = `
-            <div style="color: #00d4ff; font-weight: bold;">${assetA.name}</div>
-            <div style="font-size: 0.8rem;">${assetA.points} PTS | ${assetA.pos}</div>
+            <div style="color: #3b82f6; font-weight: bold;">${assetHome.name}</div>
+            <div style="font-size: 0.75rem;">OFFERED ASSET (xGA: ${assetHome.xga})</div>
         `;
     } else {
-        assetB = player;
+        assetAway = player;
         document.querySelector('#slot-b .slot-content').innerHTML = `
-            <div style="color: #00d4ff; font-weight: bold;">${assetB.name}</div>
-            <div style="font-size: 0.8rem;">${assetB.points} PTS | ${assetB.pos}</div>
+            <div style="color: #ef4444; font-weight: bold;">${assetAway.name}</div>
+            <div style="font-size: 0.75rem;">TARGET RETURN (xGA: ${assetAway.xga})</div>
         `;
     }
     
-    updateSystemStatus("Assets identified. Ready for War Room analysis.");
+    updateAwayStatus("ASSETS STAGED", "#f59e0b", "Away GM is reviewing the proposed value swap.");
 }
 
-// 6. IMPACT VERDICT ENGINE (BI DATA ANALYSIS)
+// 6. THE AWAY GM DECISION ENGINE
 const analyzeBtn = document.getElementById('execute-trade');
 if (analyzeBtn) {
     analyzeBtn.addEventListener('click', () => {
-        if (!assetA || !assetB) {
-            alert("Select assets from both franchises to simulate impact.");
+        if (!assetHome || !assetAway) {
+            alert("Select assets from both NHL HOME and NHL AWAY to simulate.");
             return;
         }
 
-        // Calculation 1: Production Delta (Based on 'P' from XLSX)
-        const pointDelta = assetB.points - assetA.points;
-        
-        // Calculation 2: Possession Impact (Based on 'FOW%' from XLSX)
-        const fowDelta = (assetB.fow - assetA.fow).toFixed(1);
-        
-        // Calculation 3: Financial Risk
-        const salaryDelta = assetB.salary - assetA.salary;
+        const ppgGap = assetAway.ppg - assetHome.ppg;
+        const xgaGap = assetHome.xga - assetAway.xga; // Positive means Home is worse defensively
+        const salaryGap = assetHome.salary - assetAway.salary;
 
+        // --- THE LOGIC ENGINE ---
+
+        // 1. DENIED: Defensive Liability (xGA too high)
+        if (xgaGap > 0.4) {
+            updateAwayStatus("PROPOSAL DENIED: DEFENSIVE RISK", "#ef4444", 
+                `Away GM: "We can't take this. ${assetHome.name} has a significantly higher xGA (${assetHome.xga}) than our current asset. We won't sacrifice our defensive structure."`);
+        }
+        // 2. DENIED: Scoring Gap (PPG too low)
+        else if (ppgGap > 0.3) {
+            updateAwayStatus("PROPOSAL DENIED: VALUE GAP", "#ef4444", 
+                `Away GM: "The production doesn't match. We lose ${ppgGap.toFixed(2)} points per game in this deal. You need to offer a more impactful skater."`);
+        }
+        // 3. DENIED: Financials (Cap Hit)
+        else if (salaryGap > 2000000) {
+            updateAwayStatus("TRADE DENIED: CAP REJECTION", "#ef4444", 
+                `Away GM: "We can't absorb ${assetHome.name}'s contract. Unless you retain significant salary, this deal is dead."`);
+        }
+        // 4. COUNTER-OFFER: The "Maybe" Zone
+        else if (ppgGap > 0.1 || xgaGap > 0.1) {
+            updateAwayStatus("COUNTER-OFFER INCOMING", "#f59e0b", 
+                "Away GM: 'The analytics are close. We'll accept if you throw in a 2026 2nd-round pick to bridge the value gap.'");
+        }
+        // 5. ACCEPTED
+        else {
+            updateAwayStatus("PROPOSAL ACCEPTED", "#22c55e", 
+                `Away GM: "The metrics check out. ${assetHome.name} fits our defensive profile and the cap flux is manageable. Send the paperwork."`);
+        }
+
+        // Update the Comparison Stats Box
         const aiStatus = document.getElementById('ai-status');
-        aiStatus.innerHTML = `
-            <div class="ai-verdict-box" style="text-align:left;">
-                <p style="font-family:'Orbitron'; color:#00d4ff; border-bottom:1px solid #334155;">STRATEGIC ANALYSIS</p>
-                <ul style="list-style:none; padding:0; font-size:0.85rem; line-height:1.8;">
-                    <li>🏒 <strong>Net Production:</strong> ${pointDelta > 0 ? '+' : ''}${pointDelta} Points</li>
-                    <li>🔄 <strong>Possession Shift:</strong> ${fowDelta > 0 ? '+' : ''}${fowDelta}% FOW</li>
-                    <li>💰 <strong>Cap Flux:</strong> $${salaryDelta.toLocaleString()}</li>
-                </ul>
-                <div style="background: rgba(0, 212, 255, 0.1); padding: 8px; border-radius: 4px; font-size: 0.75rem; margin-top: 10px;">
-                    <strong>AI VERDICT:</strong> ${generateAIVerdict(pointDelta, fowDelta, salaryDelta)}
+        if (aiStatus) {
+            aiStatus.innerHTML = `
+                <div style="font-size:0.8rem; text-align:left; border-top:1px solid #334155; padding-top:10px;">
+                    <strong>📊 TRADE DELTA:</strong><br>
+                    Net PPG: ${ppgGap > 0 ? '+' : ''}${ppgGap.toFixed(2)}<br>
+                    xGA Shift: ${xgaGap > 0 ? '+' : ''}${xgaGap.toFixed(2)}<br>
+                    Cap Flux: $${(salaryGap / 1000000).toFixed(1)}M
                 </div>
-            </div>
-        `;
-        updateSystemStatus("Data Correlation Complete. Verdict Rendered.");
+            `;
+        }
     });
-}
-
-// AI Analysis Logic based on the stats
-function generateAIVerdict(pts, fow, money) {
-    if (pts > 10 && money <= 0) return "High-value acquisition. Elite production increase with zero cap inflation.";
-    if (pts < 0 && money < -2000000) return "Strategic cap dump. Sacrificing production for long-term financial flexibility.";
-    if (fow > 5) return "Positional upgrade. Significant improvement in puck possession and faceoff circle control.";
-    if (pts > 0) return "Marginal production upgrade. Fits current roster scoring profile.";
-    return "Lateral move detected. Minor impact on overall franchise trajectory.";
 }
