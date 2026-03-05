@@ -1,7 +1,7 @@
 /**
  * HYPERDRIVE AI: WAR ROOM ENGINE
  * Phase 2: Front Office Negotiation Logic
- * Feature Set: NHL Home/Away, GM Decision Sensor, xGA Analytics
+ * Updated Feature Set: P/GP, Plus/Minus (+/-) Sensor, Cap Flux Tracking
  */
 
 let assetHome = null;
@@ -78,7 +78,7 @@ function loadRoster(side) {
     capAmount.innerText = `$${teamData.capSpace.toLocaleString()}`;
     rosterDisplay.innerHTML = '';
     
-    // Inject Players with PPG and xGA
+    // Inject Players with P/GP and +/- (Replacing xGA)
     teamData.roster.forEach(player => {
         const card = document.createElement('div');
         card.className = 'player-card';
@@ -86,7 +86,7 @@ function loadRoster(side) {
             <div>
                 <strong>${player.name}</strong> (${player.pos})
                 <div style="font-size: 0.7rem; opacity: 0.8;">
-                    PPG: ${player.ppg} | xGA: ${player.xga} | $${(player.salary / 1000000).toFixed(1)}M
+                    P/GP: ${player.ppg} | +/-: ${player.plusMinus > 0 ? '+' : ''}${player.plusMinus} | $${(player.salary / 1000000).toFixed(1)}M
                 </div>
             </div>
             <button class="add-btn" onclick="selectAsset('${side}', '${player.name.replace(/'/g, "\\'")}')">+</button>
@@ -94,10 +94,10 @@ function loadRoster(side) {
         rosterDisplay.appendChild(card);
     });
 
-    updateAwayStatus("FRANCHISE DATA LOADED", "#00d4ff", `Analyzing ${teamData.name} roster depth...`);
+    updateAwayStatus("FRANCHISE DATA LOADED", "#00d4ff", `Analyzing ${teamData.name} roster efficiency...`);
 }
 
-// 5. ASSET SELECTION (Home vs Away Slots)
+// 5. ASSET SELECTION
 function selectAsset(side, playerName) {
     const selectId = side === 'A' ? 'team-a-select' : 'team-b-select';
     const teamId = document.getElementById(selectId).value;
@@ -108,20 +108,20 @@ function selectAsset(side, playerName) {
         assetHome = player;
         document.querySelector('#slot-a .slot-content').innerHTML = `
             <div style="color: #3b82f6; font-weight: bold;">${assetHome.name}</div>
-            <div style="font-size: 0.75rem;">OFFERED ASSET (xGA: ${assetHome.xga})</div>
+            <div style="font-size: 0.75rem;">OFFERED ASSET (P/GP: ${assetHome.ppg})</div>
         `;
     } else {
         assetAway = player;
         document.querySelector('#slot-b .slot-content').innerHTML = `
             <div style="color: #ef4444; font-weight: bold;">${assetAway.name}</div>
-            <div style="font-size: 0.75rem;">TARGET RETURN (xGA: ${assetAway.xga})</div>
+            <div style="font-size: 0.75rem;">TARGET RETURN (P/GP: ${assetAway.ppg})</div>
         `;
     }
     
-    updateAwayStatus("ASSETS STAGED", "#f59e0b", "Away GM is reviewing the proposed value swap.");
+    updateAwayStatus("ASSETS STAGED", "#f59e0b", "Away GM is running two-way impact simulations.");
 }
 
-// 6. THE AWAY GM DECISION ENGINE
+// 6. THE AWAY GM DECISION ENGINE (The "Trade Deadline Engine")
 const analyzeBtn = document.getElementById('execute-trade');
 if (analyzeBtn) {
     analyzeBtn.addEventListener('click', () => {
@@ -131,35 +131,35 @@ if (analyzeBtn) {
         }
 
         const ppgGap = assetAway.ppg - assetHome.ppg;
-        const xgaGap = assetHome.xga - assetAway.xga; // Positive means Home is worse defensively
+        const plusMinusGap = assetAway.plusMinus - assetHome.plusMinus;
         const salaryGap = assetHome.salary - assetAway.salary;
 
-        // --- THE LOGIC ENGINE ---
+        // --- THE UPDATED LOGIC ENGINE ---
 
-        // 1. DENIED: Defensive Liability (xGA too high)
-        if (xgaGap > 0.4) {
-            updateAwayStatus("PROPOSAL DENIED: DEFENSIVE RISK", "#ef4444", 
-                `Away GM: "We can't take this. ${assetHome.name} has a significantly higher xGA (${assetHome.xga}) than our current asset. We won't sacrifice our defensive structure."`);
+        // 1. DENIED: Defensive Liability (Plus/Minus too low)
+        if (plusMinusGap > 15) {
+            updateAwayStatus("PROPOSAL DENIED: TWO-WAY RISK", "#ef4444", 
+                `Away GM: "We can't justify the defensive drop-off. ${assetHome.name} is a ${assetHome.plusMinus} compared to our asset's ${assetAway.plusMinus}. Our structure would collapse."`);
         }
-        // 2. DENIED: Scoring Gap (PPG too low)
-        else if (ppgGap > 0.3) {
-            updateAwayStatus("PROPOSAL DENIED: VALUE GAP", "#ef4444", 
-                `Away GM: "The production doesn't match. We lose ${ppgGap.toFixed(2)} points per game in this deal. You need to offer a more impactful skater."`);
+        // 2. DENIED: Scoring Efficiency (P/GP too low)
+        else if (ppgGap > 0.25) {
+            updateAwayStatus("PROPOSAL DENIED: EFFICIENCY GAP", "#ef4444", 
+                `Away GM: "The production rate isn't there. We lose ${ppgGap.toFixed(2)} points per game in this deal. We need more offensive ROI."`);
         }
-        // 3. DENIED: Financials (Cap Hit)
-        else if (salaryGap > 2000000) {
+        // 3. DENIED: Financials (Cap Flux/Hit)
+        else if (salaryGap > 2500000) {
             updateAwayStatus("TRADE DENIED: CAP REJECTION", "#ef4444", 
-                `Away GM: "We can't absorb ${assetHome.name}'s contract. Unless you retain significant salary, this deal is dead."`);
+                `Away GM: "This creates an unmanageable Cap Flux of $${(salaryGap / 1000000).toFixed(1)}M. We don't have the space to absorb this hit."`);
         }
         // 4. COUNTER-OFFER: The "Maybe" Zone
-        else if (ppgGap > 0.1 || xgaGap > 0.1) {
+        else if (ppgGap > 0.1 || plusMinusGap > 5) {
             updateAwayStatus("COUNTER-OFFER INCOMING", "#f59e0b", 
-                "Away GM: 'The analytics are close. We'll accept if you throw in a 2026 2nd-round pick to bridge the value gap.'");
+                "Away GM: 'The analytics are interesting but slightly lopsided. We'll accept if you retain 25% of the salary to balance the financial risk.'");
         }
         // 5. ACCEPTED
         else {
             updateAwayStatus("PROPOSAL ACCEPTED", "#22c55e", 
-                `Away GM: "The metrics check out. ${assetHome.name} fits our defensive profile and the cap flux is manageable. Send the paperwork."`);
+                `Away GM: "The efficiency metrics align. ${assetHome.name} maintains our two-way standard and the cap flux is within our 3-year model limits."`);
         }
 
         // Update the Comparison Stats Box
@@ -168,8 +168,8 @@ if (analyzeBtn) {
             aiStatus.innerHTML = `
                 <div style="font-size:0.8rem; text-align:left; border-top:1px solid #334155; padding-top:10px;">
                     <strong>📊 TRADE DELTA:</strong><br>
-                    Net PPG: ${ppgGap > 0 ? '+' : ''}${ppgGap.toFixed(2)}<br>
-                    xGA Shift: ${xgaGap > 0 ? '+' : ''}${xgaGap.toFixed(2)}<br>
+                    Net P/GP: ${ppgGap > 0 ? '+' : ''}${ppgGap.toFixed(2)}<br>
+                    +/- Variance: ${plusMinusGap > 0 ? '+' : ''}${plusMinusGap}<br>
                     Cap Flux: $${(salaryGap / 1000000).toFixed(1)}M
                 </div>
             `;
