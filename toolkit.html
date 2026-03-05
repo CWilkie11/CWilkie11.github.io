@@ -84,30 +84,31 @@
                 </div>
             </div>
 
-            <div class="toolkit-panel analytics-center">
-                <h3 style="text-align: center; margin-bottom: 20px;">Asset Analysis</h3>
-                
-                <div class="war-room-center">
-                    <div class="trade-slot" id="slot-a">
-                        <small style="color: #00d4ff; font-weight: bold;">HOME ASSET</small>
-                        <div class="slot-content">-- Empty --</div>
-                    </div>
-                    
-                    <div class="vs-divider">VS</div>
-                    
-                    <div class="trade-slot" id="slot-b">
-                        <small style="color: #ff4d4d; font-weight: bold;">AWAY TARGET</small>
-                        <div class="slot-content">-- Empty --</div>
-                    </div>
-                </div>
+           <div class="toolkit-panel analytics-center">
+    <h3 style="text-align: center; margin-bottom: 20px; font-family: 'Orbitron', sans-serif;">GM DECISION SENSOR</h3>
+    
+    <div class="war-room-center">
+        <div class="trade-slot" id="slot-a">
+            <small style="color: #3b82f6; font-weight: bold; letter-spacing: 1px;">OFFERED ASSET</small>
+            <div class="slot-content" style="border: 1px dashed #3b82f6; padding: 10px; min-height: 50px;">-- Empty --</div>
+        </div>
+        
+        <div class="vs-divider">⇄</div>
+        
+        <div class="trade-slot" id="slot-b">
+            <small style="color: #ef4444; font-weight: bold; letter-spacing: 1px;">TARGET RETURN</small>
+            <div class="slot-content" style="border: 1px dashed #ef4444; padding: 10px; min-height: 50px;">-- Empty --</div>
+        </div>
+    </div>
 
-                <div class="perspective-box" id="ai-status" style="font-size: 0.9rem; text-align: center;">
-                    <p>Select assets to calculate impact on Home Team trajectory.</p>
-                </div>
-                
-                <button id="execute-trade" class="trade-btn">Execute AI Analysis</button>
-                <button id="reset-trade" class="trade-btn" style="background:#334155; margin-top:5px;">Clear War Room</button>
-            </div>
+    <div class="perspective-box" id="ai-status" style="text-align: center; border: 2px solid #3b82f6; background: rgba(15, 23, 42, 0.9); margin-top: 20px; padding: 15px;">
+        <p style="margin-bottom: 5px; font-size: 0.7rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">Home GM Approval Probability:</p>
+        <div id="gm-verdict-display" style="font-size: 1.2rem; font-weight: 900; color: #00d4ff;">AWAITING PROPOSAL...</div>
+    </div>
+    
+    <button id="execute-trade" class="trade-btn" style="width: 100%; padding: 15px; background: #3b82f6; color: white; border: none; font-weight: bold; margin-top: 20px; cursor: pointer; border-radius: 4px;">SIMULATE GM DECISION</button>
+    <button id="reset-trade" class="trade-btn" style="width: 100%; background:#334155; color: white; border: none; padding: 10px; margin-top:10px; font-size: 0.8rem; cursor: pointer; border-radius: 4px;">REJECT ALL TERMS</button>
+</div>
 
             <div class="toolkit-panel">
                 <div class="panel-header">
