@@ -84,27 +84,30 @@
                 </div>
             </div>
 
-           <div class="toolkit-panel analytics-center">
-    <h3 style="text-align: center; margin-bottom: 20px; font-family: 'Orbitron', sans-serif;">GM DECISION SENSOR</h3>
+          <div class="toolkit-panel analytics-center">
+    <h3 style="text-align: center; margin-bottom: 20px;">GM DECISION SENSOR</h3>
     
-    <div class="war-room-center">
+    <div class="war-room-center" style="display: flex; justify-content: center; align-items: center; width: 100%; gap: 10px;">
+        
         <div class="trade-slot" id="slot-a">
-            <small style="color: #3b82f6; font-weight: bold; letter-spacing: 1px;">OFFERED ASSET</small>
-            <div class="slot-content" style="border: 1px dashed #3b82f6; padding: 10px; min-height: 50px;">-- Empty --</div>
+            <small style="color: #3b82f6; font-weight: bold;">OFFERED ASSET</small>
+            <div class="slot-content">-- Empty --</div>
         </div>
         
-        <div class="vs-divider">⇄</div>
+        <div class="vs-divider" style="font-family: 'Orbitron'; color: #94a3b8; padding: 0 15px;">⇄</div>
         
         <div class="trade-slot" id="slot-b">
-            <small style="color: #ef4444; font-weight: bold; letter-spacing: 1px;">TARGET RETURN</small>
-            <div class="slot-content" style="border: 1px dashed #ef4444; padding: 10px; min-height: 50px;">-- Empty --</div>
+            <small style="color: #ef4444; font-weight: bold;">TARGET RETURN</small>
+            <div class="slot-content">-- Empty --</div>
         </div>
-    </div>
-
-    <div class="perspective-box" id="ai-status" style="text-align: center; border: 2px solid #3b82f6; background: rgba(15, 23, 42, 0.9); margin-top: 20px; padding: 15px;">
-        <p style="margin-bottom: 5px; font-size: 0.7rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px;">Home GM Approval Probability:</p>
+        
+    </div> <div class="perspective-box" id="ai-status" style="text-align: center; margin-top: 25px; width: 100%;">
+        <p style="font-size: 0.7rem; color: #94a3b8; text-transform: uppercase;">Home GM Approval Probability:</p>
         <div id="gm-verdict-display" style="font-size: 1.2rem; font-weight: 900; color: #00d4ff;">AWAITING PROPOSAL...</div>
     </div>
+    
+    <button id="execute-trade" class="trade-btn">SIMULATE GM DECISION</button>
+</div>
     
     <button id="execute-trade" class="trade-btn" style="width: 100%; padding: 15px; background: #3b82f6; color: white; border: none; font-weight: bold; margin-top: 20px; cursor: pointer; border-radius: 4px;">SIMULATE GM DECISION</button>
     <button id="reset-trade" class="trade-btn" style="width: 100%; background:#334155; color: white; border: none; padding: 10px; margin-top:10px; font-size: 0.8rem; cursor: pointer; border-radius: 4px;">REJECT ALL TERMS</button>
